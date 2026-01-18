@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loopd | Infinite Sounds</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+    <style>
+        /* --- VISUAL STYLE: SHARP & MINIMAL --- */
+        :root {
+            --bg-body: #050505;
+            --bg-panel: #0F0F0F;
+            --bg-border: #222;
+            --primary: #4f46e5; /* Sharp Indigo */
+            --accent: #f43f5e; /* Sharp Pink */
+            --text-main: #fff;
+            --text-dim: #777;
+            --nav-width: 260px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Manrope', sans-serif; }
+        
+        body { background: var(--bg-body); color: var(--text-main); height: 100vh; display: flex; overflow: hidden; }
+
+        /* Helpers */
+        .hidden { display: none !important; }
+        .btn { cursor: pointer; border: none; outline: none; transition: 0.2s; }
+        
+        /* Sidebar */
+        .sidebar {
+            width: var(--nav-width);
+            background: var(--bg-body);
+            border-right: 1px solid var(--bg-border);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo { font-size: 26px; font-weight: 800; letter-spacing: -1px; margin-bottom: 40px; }
+        .logo span { color: var(--primary); }
+
+        .nav-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px; color: var(--text-dim);
+            font-size: 14px; font-weight: 600;
+            border-radius: 4px; cursor: pointer;
+            margin-bottom: 4px;
+        }
+        .nav-item:hover { background: var(--bg-panel); color: #fff; }
+        .nav-item.active { background: #1a1a1a; color: #fff; border-left: 3px solid var(--primary); }
+
+        .upload-zone-btn {
+            margin-top: auto;
+            background: var(--bg-panel);
+            border: 1px dashed var(--bg-border);
+            color: var(--text-dim);
+            padding: 15px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .upload-zone-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* Main Area */
+        .main { flex: 1; display: flex; flex-direction: column; position: relative; }
+        
+        /* Top Bar */
+        .top-bar {
+            height: 70px;
+            border-bottom: 1px solid var(--bg-border);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 30px;
+            background: rgba(5,5,5,0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .search-box {
+            background: var(--bg-panel);
+            border: 1px solid var(--bg-border);
+            padding: 10px 16px;
+            border-radius: 4px;
+            width: 350px;
+            color: #fff;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .search-box input { background: transparent; border: none; color: white; width: 100%; outline: none; }
+
+        .auth-widget { display: flex; align-items: center; gap: 20px; font-size: 13px; font-weight: 600; }
+        .credits-badge { color: var(--primary); background: rgba(79, 70, 229, 0.1); padding: 5px 12px; border-radius: 4px; }
+        
+        /* Content Area */
+        .content-scroll { flex: 1; overflow-y: auto; padding: 30px; padding-bottom: 100px; }
+
+        .section-header { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .section-title { font-size: 20px; font-weight: 700; }
+
+        /* Sample Table */
+        .sample-row {
+            display: grid;
+            grid-template-columns: 40px 3fr 1fr 1fr 1fr;
+            padding: 12px;
+            border-bottom: 1px solid var(--bg-border);
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-dim);
+            transition: 0.1s;
+        }
+        .sample-row:hover { background: var(--bg-panel); color: #fff; }
+        .sample-row.playing { background: #111; border-left: 2px solid var(--primary); }
+        
+        .play-btn { 
+            width: 28px; height: 28px; background: #222; 
+            display: flex; align-items: center; justify-content: center; 
+            border-radius: 50%; color: #fff; cursor: pointer;
+        }
+        .play-btn:hover, .sample-row.playing .play-btn { background: var(--primary); }
+
+        .row-actions { display: flex; justify-content: flex-end; gap: 10px; }
+        .action-icon { padding: 6px; cursor: pointer; }
+        .action-icon:hover { color: var(--text-main); }
+
+        /* Auth Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000;
+        }
+        .modal {
+            background: #111;
+            border: 1px solid var(--bg-border);
+            padding: 40px;
+            width: 350px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .modal input {
+            width: 100%; padding: 12px; margin-bottom: 10px;
+            background: #000; border: 1px solid #333; color: white;
+            border-radius: 4px;
+        }
+        .modal button {
+            width: 100%; padding: 12px; background: var(--primary);
+            color: white; font-weight: 700; border-radius: 4px;
+        }
+
+        /* Upload Modal */
+        #upload-modal .modal { width: 500px; text-align: left; }
+        .file-drop {
+            border: 2px dashed #333; padding: 40px; text-align: center;
+            margin: 20px 0; color: var(--text-dim); cursor: pointer;
+        }
+        .file-drop:hover { border-color: var(--primary); }
+
+        /* Bottom Player */
+        .player {
+            position: fixed; bottom: 0; left: var(--nav-width); right: 0;
+            height: 80px; background: #0A0A0A; border-top: 1px solid var(--bg-border);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; z-index: 100;
+        }
+        .waveform-dummy { flex: 1; height: 30px; margin: 0 40px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="30"><rect width="2" height="10" y="10" fill="%23333"/></svg>'); opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">Loopd<span>.</span></div>
+        
+        <div class="nav-item active" onclick="switchTab('browse')">
+            <i class="fa-solid fa-layer-group"></i> Browse
+        </div>
+        <div class="nav-item" onclick="switchTab('likes')">
+            <i class="fa-solid fa-heart"></i> Liked Sounds
+        </div>
+        <div class="nav-item" onclick="switchTab('downloads')">
+            <i class="fa-solid fa-arrow-down"></i> My Downloads
+        </div>
+
+        <div class="upload-zone-btn btn" onclick="openUploadModal()">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Sample
+        </div>
+    </nav>
+
+    <main class="main">
+        <div class="top-bar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search samples, keys, bpm...">
+            </div>
+            
+            <div class="auth-widget" id="auth-ui">
+                <button class="btn" style="color:#fff" onclick="showAuthModal()">Log In / Sign Up</button>
+            </div>
+        </div>
+
+        <div class="content-scroll">
+            <div class="section-header">
+                <h2 class="section-title" id="page-title">Browse Library</h2>
+                <div style="font-size: 12px; color: var(--text-dim);">Sort by: <span style="color:white">Newest</span></div>
+            </div>
+
+            <div class="sample-row" style="border-bottom: 1px solid #333; font-weight: 700; color: #fff;">
+                <div></div>
+                <div>Sample Name</div>
+                <div>BPM</div>
+                <div>Key</div>
+                <div style="text-align: right">Actions</div>
+            </div>
+
+            <div id="sample-list">
+                <div style="padding:40px; text-align:center; color: #444;">Loading samples...</div>
+            </div>
+        </div>
+    </main>
+
+    <div class="player">
+        <div style="width: 200px;">
+            <h4 style="font-size: 14px; margin-bottom: 4px;" id="player-title">No Track Selected</h4>
+            <div style="font-size: 11px; color: var(--text-dim);" id="player-author">-</div>
+        </div>
+        
+        <button class="play-btn" style="width: 40px; height: 40px; font-size: 16px;" onclick="toggleMainPlay()">
+            <i class="fa-solid fa-play" id="main-play-icon"></i>
+        </button>
+
+        <div class="waveform-dummy"></div>
+
+        <button class="btn" style="background:var(--primary); color: white; padding: 8px 16px; font-size: 12px; border-radius: 4px;" onclick="downloadCurrent()">
+            Download (1 Credit)
+        </button>
+
+        <audio id="global-audio"></audio>
+    </div>
+
+    <div class="modal-overlay hidden" id="auth-modal">
+        <div class="modal">
+            <h2 style="margin-bottom: 20px;">Loopd Account</h2>
+            <input type="email" id="email" placeholder="Email Address">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="handleAuth()">Sign In / Sign Up</button>
+            <p style="margin-top: 15px; font-size: 12px; color: #666;">
+                If account doesn't exist, we will create one + give 5 credits.
+            </p>
+            <p style="margin-top: 10px; font-size: 12px; color: #666; cursor: pointer" onclick="closeModals()">Close</p>
+        </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="upload-modal">
+        <div class="modal">
+            <h2 style="margin-bottom: 20px;">Upload Sample</h2>
+            <input type="text" id="up-name" placeholder="Sample Name (e.g. Deep Kick 01)">
+            <div style="display: flex; gap: 10px;">
+                <input type="number" id="up-bpm" placeholder="BPM">
+                <input type="text" id="up-key" placeholder="Key (e.g. Cm)">
+            </div>
+            
+            <input type="file" id="up-file" class="hidden" accept=".wav,.mp3">
+            <div class="file-drop" onclick="document.getElementById('up-file').click()">
+                <i class="fa-solid fa-file-audio" style="font-size: 30px; margin-bottom: 10px;"></i><br>
+                <span id="file-name-display">Click to select WAV file</span>
+            </div>
+
+            <button onclick="uploadSample()">Upload to Database</button>
+            <p style="margin-top: 10px; font-size: 12px; color: #666; cursor: pointer; text-align: center;" onclick="closeModals()">Cancel</p>
+        </div>
+    </div>
+
+
+    <script type="module">
+        // -----------------------------------------------------
+        // 1. CONFIGURATION (PASTE YOUR KEYS HERE)
+        // -----------------------------------------------------
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	const firebaseConfig = {
+	  apiKey: "AIzaSyDHtQ80PZrnbx-7avGEei6-hkKASKKufFw",
+ 	 authDomain: "loopd-app.firebaseapp.com",
+ 	 projectId: "loopd-app",
+ 	 storageBucket: "loopd-app.firebasestorage.app",
+ 	 messagingSenderId: "380753853039",
+	  appId: "1:380753853039:web:f52d0618cb9a027d7f6b9a",
+	  measurementId: "G-9FCMND5KL2"
+	};
+        // REPLACE THIS WITH YOUR SUPABASE KEYS
+        const supabaseUrl = 'https://kzzjzmmdtoryruackdei.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6emp6bW1kdG9yeXJ1YWNrZGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3NTQ3OTksImV4cCI6MjA4NDMzMDc5OX0.mx7UAyVr0QuyiWVwOhNDeX81kjVLlL9PQNtq9_qGAkc'; 
+
+        // Initialize Services
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // -----------------------------------------------------
+        // 2. APP STATE
+        // -----------------------------------------------------
+        let currentUser = null;
+        let userCredits = 0;
+        let currentTrack = null;
+        let allSamples = [];
+        const audio = document.getElementById('global-audio');
+
+        // -----------------------------------------------------
+        // 3. AUTHENTICATION LOGIC
+        // -----------------------------------------------------
+        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
+        window.closeModals = () => document.querySelectorAll('.modal-overlay').forEach(el => el.classList.add('hidden'));
+
+        window.handleAuth = async () => {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+
+            try {
+                // Try logging in
+                await signInWithEmailAndPassword(auth, email, pass);
+            } catch (error) {
+                // If user not found, try signing up
+                if(error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                    try {
+                        const userCred = await createUserWithEmailAndPassword(auth, email, pass);
+                        // Create User Doc with 5 Free Credits
+                        await setDoc(doc(db, "users", userCred.user.uid), {
+                            email: email,
+                            credits: 5,
+                            downloads: [],
+                            likes: []
+                        });
+                        alert("Account created! You have 5 Free Credits.");
+                    } catch (signupErr) {
+                        alert("Error: " + signupErr.message);
+                    }
+                } else {
+                    alert("Error: " + error.message);
+                }
+            }
+            closeModals();
+        };
+
+        // Listen for Login State Changes
+        onAuthStateChanged(auth, async (user) => {
+            currentUser = user;
+            const ui = document.getElementById('auth-ui');
+            
+            if (user) {
+                // Fetch Credits
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    userCredits = userDoc.data().credits;
+                    ui.innerHTML = `
+                        <div class="credits-badge">${userCredits} Credits</div>
+                        <div style="cursor:pointer" onclick="logout()">Sign Out</div>
+                    `;
+                }
+            } else {
+                ui.innerHTML = `<button class="btn" style="color:#fff" onclick="showAuthModal()">Log In / Sign Up</button>`;
+                userCredits = 0;
+            }
+        });
+
+        window.logout = () => signOut(auth);
+
+        // -----------------------------------------------------
+        // 4. SUPABASE UPLOAD & FIRESTORE SAVE
+        // -----------------------------------------------------
+        window.openUploadModal = () => {
+            if(!currentUser) return alert("Please log in to upload.");
+            document.getElementById('upload-modal').classList.remove('hidden');
+        };
+
+        // File Input UI Change
+        document.getElementById('up-file').addEventListener('change', function() {
+            if(this.files[0]) document.getElementById('file-name-display').innerText = this.files[0].name;
+        });
+
+        window.uploadSample = async () => {
+            const file = document.getElementById('up-file').files[0];
+            const name = document.getElementById('up-name').value;
+            const bpm = document.getElementById('up-bpm').value;
+            const key = document.getElementById('up-key').value;
+
+            if(!file || !name) return alert("Please fill all fields");
+
+            // 1. Upload .wav to Supabase
+            const fileName = `${Date.now()}_${file.name}`;
+            const { data, error } = await supabase.storage.from('samples').upload(fileName, file);
+
+            if(error) return alert("Upload failed: " + error.message);
+
+            // 2. Get Public URL
+            const { data: { publicUrl } } = supabase.storage.from('samples').getPublicUrl(fileName);
+
+            // 3. Save Metadata to Firestore
+            await addDoc(collection(db, "samples"), {
+                name: name,
+                bpm: bpm,
+                key: key,
+                url: publicUrl,
+                uploaderId: currentUser.uid,
+                createdAt: new Date()
+            });
+
+            alert("Sample Uploaded Successfully!");
+            closeModals();
+            loadSamples(); // Refresh list
+        };
+
+        // -----------------------------------------------------
+        // 5. DISPLAY SAMPLES & PLAYBACK
+        // -----------------------------------------------------
+        async function loadSamples(filter = 'all') {
+            const list = document.getElementById('sample-list');
+            list.innerHTML = '<div style="padding:20px; color:#666;">Refreshing library...</div>';
+
+            let q = query(collection(db, "samples"));
+            // In a real app, we would add complex filters here
+            
+            const snapshot = await getDocs(q);
+            allSamples = [];
+            snapshot.forEach(doc => allSamples.push({ id: doc.id, ...doc.data() }));
+
+            // Render
+            list.innerHTML = '';
+            if(allSamples.length === 0) {
+                list.innerHTML = '<div style="padding:20px;">No samples found. Upload one!</div>';
+                return;
+            }
+
+            allSamples.forEach(s => {
+                const div = document.createElement('div');
+                div.className = 'sample-row';
+                div.setAttribute('data-id', s.id);
+                div.innerHTML = `
+                    <div class="play-btn" onclick="playTrack('${s.id}')">
+                        <i class="fa-solid fa-play" id="icon-${s.id}"></i>
+                    </div>
+                    <div style="font-weight:600; color:white">${s.name}</div>
+                    <div>${s.bpm}</div>
+                    <div>${s.key}</div>
+                    <div class="row-actions">
+                        <i class="fa-regular fa-heart action-icon"></i>
+                        <i class="fa-solid fa-download action-icon" onclick="downloadSample('${s.id}')"></i>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        window.playTrack = (id) => {
+            const sample = allSamples.find(s => s.id === id);
+            if(!sample) return;
+
+            // Reset UI
+            document.querySelectorAll('.sample-row').forEach(r => r.classList.remove('playing'));
+            document.querySelectorAll('.fa-pause').forEach(i => i.classList.replace('fa-pause', 'fa-play'));
+
+            if(currentTrack && currentTrack.id === id && !audio.paused) {
+                audio.pause();
+                return;
+            }
+
+            // Play New
+            currentTrack = sample;
+            audio.src = sample.url;
+            audio.play();
+
+            // Update UI
+            const row = document.querySelector(`.sample-row[data-id="${id}"]`);
+            if(row) row.classList.add('playing');
+            
+            const icon = document.getElementById(`icon-${id}`);
+            if(icon) {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+            }
+
+            // Update Bottom Player
+            document.getElementById('player-title').innerText = sample.name;
+            document.getElementById('player-author').innerText = `${sample.bpm} BPM - ${sample.key}`;
+            document.getElementById('main-play-icon').classList.replace('fa-play', 'fa-pause');
+        };
+
+        window.toggleMainPlay = () => {
+            if (audio.paused && currentTrack) {
+                audio.play();
+                document.getElementById('main-play-icon').classList.replace('fa-play', 'fa-pause');
+            } else {
+                audio.pause();
+                document.getElementById('main-play-icon').classList.replace('fa-pause', 'fa-play');
+            }
+        };
+
+        // -----------------------------------------------------
+        // 6. DOWNLOADING & CREDITS
+        // -----------------------------------------------------
+        window.downloadSample = async (id) => {
+            // Find sample if id passed, else current
+            let sampleId = id || (currentTrack ? currentTrack.id : null);
+            if (!sampleId) return;
+            
+            if(!currentUser) return alert("Log in to download.");
+            if(userCredits < 1) return alert("Not enough credits!");
+
+            const sample = allSamples.find(s => s.id === sampleId);
+
+            // Deduct Credit in Firestore
+            const userRef = doc(db, "users", currentUser.uid);
+            await updateDoc(userRef, {
+                credits: userCredits - 1
+            });
+            
+            // Update local state
+            userCredits--;
+            document.querySelector('.credits-badge').innerText = `${userCredits} Credits`;
+
+            // Trigger Browser Download
+            // (Create a temporary link to force download)
+            const a = document.createElement('a');
+            a.href = sample.url;
+            a.target = '_blank'; // Opens in new tab to force browser download/play
+            a.download = sample.name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        window.downloadCurrent = () => window.downloadSample(null);
+
+        // -----------------------------------------------------
+        // 7. TABS LOGIC
+        // -----------------------------------------------------
+        window.switchTab = (tabName) => {
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            document.getElementById('page-title').innerText = tabName === 'browse' ? 'Browse Library' : 
+                                                              tabName === 'likes' ? 'Liked Sounds' : 'My Downloads';
+            
+            // In a real app, we would filter database queries here
+            loadSamples(); 
+        };
+
+        // Initial Load
+        loadSamples();
+
+    </script>
+</body>
+</html>
