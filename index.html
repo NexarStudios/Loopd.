@@ -15,8 +15,8 @@
         
         body { 
             font-family: 'Space Grotesk', monospace; 
-            background: #000; 
-            color: #fff; 
+            background: #fff; 
+            color: #000; 
             height: 100vh; 
             display: flex; 
             overflow: hidden; 
@@ -24,60 +24,61 @@
 
         /* Sidebar */
         .sidebar {
-            width: 220px;
-            background: #000;
-            border-right: 2px solid #fff;
+            width: 200px;
+            background: #fff;
+            border-right: 1px solid #000;
             display: flex;
             flex-direction: column;
-            padding: 40px 20px;
+            padding: 30px 15px;
         }
 
         .logo { 
-            font-size: 32px; 
+            font-size: 24px; 
             font-weight: 700; 
-            letter-spacing: -2px; 
-            margin-bottom: 60px;
+            letter-spacing: -1px; 
+            margin-bottom: 50px;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         .nav-item {
-            padding: 16px 0;
-            font-size: 14px;
+            padding: 12px 0;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #e0e0e0;
             transition: all 0.2s;
         }
         .nav-item:hover { 
-            background: #fff; 
-            color: #000; 
-            padding-left: 10px;
+            background: #000; 
+            color: #fff; 
+            padding-left: 8px;
         }
         .nav-item.active { 
-            background: #fff; 
-            color: #000; 
-            padding-left: 10px;
+            background: #000; 
+            color: #fff; 
+            padding-left: 8px;
         }
 
         .upload-btn {
             margin-top: auto;
-            background: #fff;
-            color: #000;
-            padding: 18px;
+            background: #000;
+            color: #fff;
+            padding: 14px;
             text-align: center;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            border: 2px solid #fff;
+            border: 1px solid #000;
             transition: all 0.2s;
         }
         .upload-btn:hover { 
-            background: #000; 
-            color: #fff; 
+            background: #fff; 
+            color: #000; 
         }
 
         /* Main Area */
@@ -85,163 +86,328 @@
         
         /* Top Bar */
         .top-bar {
-            height: 80px;
-            border-bottom: 2px solid #fff;
+            height: 60px;
+            border-bottom: 1px solid #000;
             display: flex; 
             align-items: center; 
             justify-content: space-between;
-            padding: 0 40px;
-            background: #000;
+            padding: 0 30px;
+            background: #fff;
         }
 
         .search-box {
-            background: #000;
-            border: 2px solid #fff;
-            padding: 12px 20px;
-            width: 400px;
+            background: #fff;
+            border: 1px solid #000;
+            padding: 10px 15px;
+            width: 350px;
             display: flex; 
             align-items: center; 
-            gap: 15px;
+            gap: 12px;
         }
         .search-box input { 
             background: transparent; 
             border: none; 
-            color: #fff; 
+            color: #000; 
             width: 100%; 
             outline: none;
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
+            font-family: 'Space Grotesk', monospace;
+        }
+        .search-box input::placeholder {
+            color: #999;
+        }
+
+        .search-mode {
+            display: flex;
+            gap: 10px;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+        }
+        .search-mode span {
+            cursor: pointer;
+            padding: 4px 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .search-mode span.active {
+            background: #000;
+            color: #fff;
+            border-color: #000;
         }
 
         .auth-widget { 
             display: flex; 
             align-items: center; 
-            gap: 20px; 
-            font-size: 12px; 
+            gap: 15px; 
+            font-size: 10px; 
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         .credits-badge { 
-            background: #fff; 
-            color: #000; 
-            padding: 8px 16px; 
-            border: 2px solid #fff;
+            background: #000; 
+            color: #fff; 
+            padding: 6px 12px; 
+            border: 1px solid #000;
+            cursor: pointer;
         }
-        .auth-btn {
+        .credits-badge:hover {
+            background: #fff;
+            color: #000;
+        }
+        .auth-btn, .profile-btn {
             background: transparent;
-            color: #fff;
-            border: 2px solid #fff;
-            padding: 8px 16px;
+            color: #000;
+            border: 1px solid #000;
+            padding: 6px 12px;
             cursor: pointer;
             text-transform: uppercase;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             transition: all 0.2s;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 10px;
         }
-        .auth-btn:hover {
-            background: #fff;
-            color: #000;
+        .auth-btn:hover, .profile-btn:hover {
+            background: #000;
+            color: #fff;
         }
         
         /* Content Area */
         .content-scroll { 
             flex: 1; 
             overflow-y: auto; 
-            padding: 40px; 
-            padding-bottom: 120px; 
+            padding: 30px; 
+            padding-bottom: 100px; 
+        }
+
+        /* HOME PAGE */
+        .home-hero {
+            text-align: center;
+            padding: 50px 0;
+            border-bottom: 1px solid #000;
+            margin-bottom: 40px;
+        }
+        .home-hero h1 {
+            font-size: 52px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+        }
+        .home-hero p {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #000;
+            border: 1px solid #000;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
         }
 
         .section-header { 
-            margin-bottom: 40px; 
+            margin-bottom: 25px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #fff;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #000;
         }
         .section-title { 
-            font-size: 28px; 
+            font-size: 20px; 
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
+        }
+
+        /* COLLECTIONS GRID */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        .collection-card {
+            border: 1px solid #000;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .collection-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 5px 5px 0 #000;
+        }
+        .collection-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #ddd;
+            border-bottom: 1px solid #000;
+            overflow: hidden;
+        }
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .collection-info {
+            padding: 15px;
+        }
+        .collection-name {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+        }
+        .collection-meta {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .like-btn {
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        .like-btn.liked {
+            color: #000;
+        }
+        .like-btn:hover {
+            transform: scale(1.2);
         }
 
         /* Sample Table */
         .sample-header {
             display: grid;
-            grid-template-columns: 60px 4fr 1fr 1fr 120px;
-            padding: 16px 0;
+            grid-template-columns: 50px 4fr 1fr 1fr 1fr 100px;
+            padding: 12px 0;
             font-weight: 700;
-            font-size: 11px;
+            font-size: 9px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #fff;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #000;
         }
 
         .sample-row {
             display: grid;
-            grid-template-columns: 60px 4fr 1fr 1fr 120px;
-            padding: 20px 0;
+            grid-template-columns: 50px 4fr 1fr 1fr 1fr 100px;
+            padding: 15px 0;
             align-items: center;
-            font-size: 14px;
-            border-bottom: 1px solid #333;
+            font-size: 11px;
+            border-bottom: 1px solid #e0e0e0;
             transition: all 0.1s;
         }
         .sample-row:hover { 
-            background: #fff; 
-            color: #000;
-            padding-left: 20px;
+            background: #000; 
+            color: #fff;
+            padding-left: 15px;
         }
         .sample-row.playing { 
-            background: #fff; 
-            color: #000;
-            padding-left: 20px;
+            background: #000; 
+            color: #fff;
+            padding-left: 15px;
         }
         
         .play-btn { 
-            width: 36px; 
-            height: 36px; 
-            background: #000; 
-            border: 2px solid #fff;
+            width: 30px; 
+            height: 30px; 
+            background: #fff; 
+            border: 1px solid #000;
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            color: #fff; 
+            color: #000; 
             cursor: pointer;
             transition: all 0.2s;
         }
         .play-btn:hover { 
-            background: #fff; 
-            color: #000; 
-        }
-        .sample-row.playing .play-btn { 
             background: #000; 
             color: #fff; 
         }
+        .sample-row.playing .play-btn { 
+            background: #fff; 
+            color: #000; 
+        }
         .sample-row:hover .play-btn {
-            border-color: #000;
+            border-color: #fff;
+            background: #fff;
+            color: #000;
         }
 
         .sample-name { 
             font-weight: 700; 
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .row-actions { 
             display: flex; 
             justify-content: flex-end; 
-            gap: 15px; 
+            gap: 12px; 
         }
         .action-icon { 
             cursor: pointer;
-            font-size: 16px;
+            font-size: 13px;
             transition: transform 0.2s;
         }
         .action-icon:hover { 
             transform: scale(1.2);
+        }
+        .action-icon.liked {
+            color: #000;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #fff;
+            color: #000;
+            border: 1px solid #000;
+            text-transform: uppercase;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            margin-bottom: 25px;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: #000;
+            color: #fff;
         }
 
         /* Modal */
@@ -251,194 +417,475 @@
             left: 0; 
             width: 100%; 
             height: 100%;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.9);
             display: flex; 
             align-items: center; 
             justify-content: center;
             z-index: 1000;
         }
         .modal {
-            background: #000;
-            border: 3px solid #fff;
-            padding: 60px 40px;
-            width: 450px;
+            background: #fff;
+            border: 2px solid #000;
+            padding: 40px 30px;
+            width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         .modal h2 {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: -1px;
-            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+            margin-bottom: 25px;
         }
-        .modal input {
+        .modal input, .modal textarea, .modal select {
             width: 100%; 
-            padding: 16px; 
-            margin-bottom: 15px;
-            background: #000; 
-            border: 2px solid #fff; 
-            color: #fff;
-            font-size: 14px;
+            padding: 12px; 
+            margin-bottom: 12px;
+            background: #fff; 
+            border: 1px solid #000; 
+            color: #000;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
+            font-family: 'Space Grotesk', monospace;
         }
-        .modal input::placeholder {
-            color: #666;
+        .modal input::placeholder, .modal textarea::placeholder {
+            color: #999;
+        }
+        .modal textarea {
+            resize: vertical;
+            min-height: 60px;
+            text-transform: none;
         }
         .modal button {
             width: 100%; 
-            padding: 18px; 
-            background: #fff;
-            color: #000; 
+            padding: 14px; 
+            background: #000;
+            color: #fff; 
             font-weight: 700; 
-            border: 2px solid #fff;
+            border: 1px solid #000;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             transition: all 0.2s;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 10px;
         }
         .modal button:hover {
-            background: #000;
-            color: #fff;
+            background: #fff;
+            color: #000;
         }
         .modal-text {
-            margin-top: 20px;
-            font-size: 11px;
+            margin-top: 15px;
+            font-size: 9px;
             color: #666;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         .modal-close {
             cursor: pointer;
             text-align: center;
-            margin-top: 15px;
-            font-size: 11px;
+            margin-top: 12px;
+            font-size: 9px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #fff;
+            letter-spacing: 0.5px;
+            color: #000;
         }
         .modal-close:hover {
             text-decoration: underline;
         }
 
-        /* Upload Modal Specific */
-        #upload-modal .modal { width: 550px; }
+        #upload-modal .modal { width: 500px; }
+        #collection-modal .modal { width: 450px; }
+        #account-modal .modal { width: 450px; }
+        
         .file-drop {
-            border: 2px dashed #fff; 
-            padding: 60px 40px; 
+            border: 1px dashed #000; 
+            padding: 40px 30px; 
             text-align: center;
-            margin: 20px 0; 
+            margin: 15px 0; 
             cursor: pointer;
             transition: all 0.2s;
         }
         .file-drop:hover { 
-            background: #fff;
-            color: #000;
+            background: #000;
+            color: #fff;
+        }
+        .file-drop.small {
+            padding: 30px 15px;
         }
         .input-row {
             display: flex;
+            gap: 12px;
+        }
+
+        .radio-group {
+            display: flex;
             gap: 15px;
+            margin-bottom: 12px;
+            padding: 12px;
+            border: 1px solid #000;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .radio-option input[type="radio"] {
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            cursor: pointer;
+        }
+        .radio-option label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .collection-select {
+            width: 100%;
+            padding: 12px;
+            background: #fff;
+            border: 1px solid #000;
+            color: #000;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 12px;
         }
 
         /* Bottom Player */
         .player {
             position: fixed; 
             bottom: 0; 
-            left: 220px; 
+            left: 200px; 
             right: 0;
-            height: 90px; 
-            background: #000; 
-            border-top: 2px solid #fff;
+            height: 70px; 
+            background: #fff; 
+            border-top: 1px solid #000;
             display: flex; 
             align-items: center; 
             justify-content: space-between;
-            padding: 0 40px; 
+            padding: 0 30px; 
             z-index: 100;
         }
         .player-info {
-            width: 250px;
+            width: 200px;
         }
         .player-title {
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
+            letter-spacing: 0.3px;
+            margin-bottom: 4px;
         }
         .player-meta {
-            font-size: 11px;
+            font-size: 9px;
             color: #666;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         .main-play-btn {
-            width: 50px;
-            height: 50px;
-            background: #fff;
-            color: #000;
-            border: 2px solid #fff;
+            width: 40px;
+            height: 40px;
+            background: #000;
+            color: #fff;
+            border: 1px solid #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.2s;
         }
         .main-play-btn:hover {
-            background: #000;
-            color: #fff;
+            background: #fff;
+            color: #000;
         }
         .waveform {
             flex: 1;
-            height: 40px;
-            margin: 0 40px;
-            border: 1px solid #333;
+            height: 30px;
+            margin: 0 30px;
+            border: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
-            color: #333;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .download-btn {
-            background: #fff;
-            color: #000;
-            padding: 12px 24px;
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 8px;
+            color: #ddd;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border: 2px solid #fff;
+        }
+        .download-btn {
+            background: #000;
+            color: #fff;
+            padding: 10px 18px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid #000;
             cursor: pointer;
             transition: all 0.2s;
         }
         .download-btn:hover {
-            background: #000;
-            color: #fff;
+            background: #fff;
+            color: #000;
         }
 
         /* Utilities */
         .hidden { display: none !important; }
         
         /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #fff; border: 1px solid #000; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #fff; }
+        ::-webkit-scrollbar-thumb { background: #000; border: 1px solid #fff; }
+
+        /* Empty State */
+        .empty-state {
+            padding: 60px 30px;
+            text-align: center;
+            color: #999;
+        }
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+        .empty-state h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        .empty-state p {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .create-collection-btn, .create-btn {
+            background: #000;
+            color: #fff;
+            padding: 10px 18px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid #000;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Space Grotesk', monospace;
+        }
+        .create-collection-btn:hover, .create-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .image-preview {
+            margin: 12px 0;
+            border: 1px solid #000;
+            aspect-ratio: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+        }
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-preview.empty {
+            color: #ddd;
+            font-size: 36px;
+        }
+
+        /* Account Page */
+        .account-header {
+            display: flex;
+            gap: 30px;
+            padding: 40px 0;
+            border-bottom: 1px solid #000;
+            margin-bottom: 30px;
+        }
+        .account-avatar {
+            width: 120px;
+            height: 120px;
+            border: 1px solid #000;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #ddd;
+        }
+        .account-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .account-info {
+            flex: 1;
+        }
+        .account-username {
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+        .account-email {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+        .account-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .account-stat {
+            padding: 8px 15px;
+            border: 1px solid #000;
+        }
+        .account-stat strong {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .account-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .account-btn {
+            padding: 8px 15px;
+            background: #000;
+            color: #fff;
+            border: 1px solid #000;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Space Grotesk', monospace;
+        }
+        .account-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+        .account-btn.danger {
+            background: #fff;
+            color: #ff0000;
+            border-color: #ff0000;
+        }
+        .account-btn.danger:hover {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid #000;
+            margin-bottom: 25px;
+        }
+        .tab {
+            padding: 12px 24px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab:hover {
+            background: #f5f5f5;
+        }
+        .tab.active {
+            border-bottom-color: #000;
+        }
+
+        /* User Card for Search */
+        .user-card {
+            border: 1px solid #000;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .user-card:hover {
+            background: #f5f5f5;
+        }
+        .user-avatar-small {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #000;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #ddd;
+        }
+        .user-avatar-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .user-info-small {
+            flex: 1;
+        }
+        .user-name-small {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 4px;
+        }
+        .user-meta-small {
+            font-size: 9px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 <body>
 
     <nav class="sidebar">
-        <div class="logo">LOOPD</div>
+        <div class="logo" onclick="switchView('home')">LOOPD</div>
         
-        <div class="nav-item active" onclick="switchTab('browse')">
-            Browse
+        <div class="nav-item active" onclick="switchView('home')">
+            Home
         </div>
-        <div class="nav-item" onclick="switchTab('likes')">
+        <div class="nav-item" onclick="switchView('collections')">
+            Collections
+        </div>
+        <div class="nav-item" onclick="switchView('browse')">
+            All Samples
+        </div>
+        <div class="nav-item" onclick="switchView('likes')">
             Liked
         </div>
-        <div class="nav-item" onclick="switchTab('downloads')">
-            Downloads
+        <div class="nav-item" onclick="switchView('redeem')">
+            Redeem Code
         </div>
 
         <div class="upload-btn" onclick="openUploadModal()">
@@ -448,9 +895,16 @@
 
     <main class="main">
         <div class="top-bar">
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search">
+            <div>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Search" oninput="handleSearch()" autocomplete="off">
+                </div>
+                <div class="search-mode">
+                    <span class="active" onclick="setSearchMode('samples')">Samples</span>
+                    <span onclick="setSearchMode('collections')">Collections</span>
+                    <span onclick="setSearchMode('users')">Users</span>
+                </div>
             </div>
             
             <div class="auth-widget" id="auth-ui">
@@ -458,27 +912,8 @@
             </div>
         </div>
 
-        <div class="content-scroll">
-            <div class="section-header">
-                <h2 class="section-title" id="page-title">Browse Library</h2>
-                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
-                    Sort: <span style="font-weight: 700;">Newest</span>
-                </div>
-            </div>
-
-            <div class="sample-header">
-                <div></div>
-                <div>Name</div>
-                <div>BPM</div>
-                <div>Key</div>
-                <div style="text-align: right">Actions</div>
-            </div>
-
-            <div id="sample-list">
-                <div style="padding:60px 0; text-align:center; color: #333; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">
-                    Loading samples...
-                </div>
-            </div>
+        <div class="content-scroll" id="content-area">
+            <!-- Content will be dynamically loaded here -->
         </div>
     </main>
 
@@ -505,8 +940,8 @@
     <div class="modal-overlay hidden" id="auth-modal">
         <div class="modal">
             <h2>Account</h2>
-            <input type="email" id="email" placeholder="Email">
-            <input type="password" id="password" placeholder="Password">
+            <input type="email" id="email" placeholder="Email" autocomplete="email">
+            <input type="password" id="password" placeholder="Password" autocomplete="current-password">
             <button onclick="handleAuth()">Sign In / Sign Up</button>
             <p class="modal-text">
                 New users receive 5 free credits
@@ -515,25 +950,94 @@
         </div>
     </div>
 
-    <!-- Upload Modal -->
+    <!-- Upload Sample Modal -->
     <div class="modal-overlay hidden" id="upload-modal">
         <div class="modal">
             <h2>Upload Sample</h2>
+            
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="upload-single" name="upload-type" value="single" checked onchange="toggleUploadType()">
+                    <label for="upload-single">Single Sample</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="upload-collection" name="upload-type" value="collection" onchange="toggleUploadType()">
+                    <label for="upload-collection">Add to Collection</label>
+                </div>
+            </div>
+
+            <div id="collection-selector" class="hidden">
+                <select id="collection-select" class="collection-select">
+                    <option value="">Select Collection</option>
+                </select>
+                <button onclick="showCreateCollection()" style="margin-bottom: 12px;">+ Create New Collection</button>
+            </div>
+
             <input type="text" id="up-name" placeholder="Sample Name">
             <div class="input-row">
                 <input type="number" id="up-bpm" placeholder="BPM">
-                <input type="text" id="up-key" placeholder="Key">
+                <input type="text" id="up-key" placeholder="Key (e.g. Cm)">
             </div>
+            <input type="text" id="up-tags" placeholder="Tags (comma separated)">
             
-            <input type="file" id="up-file" class="hidden" accept=".wav,.mp3">
+            <input type="file" id="up-file" class="hidden" accept=".wav,.mp3" multiple>
             <div class="file-drop" onclick="document.getElementById('up-file').click()">
-                <i class="fa-solid fa-file-audio" style="font-size: 40px; margin-bottom: 15px;"></i><br>
-                <span id="file-name-display" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
-                    Click to select file
+                <i class="fa-solid fa-file-audio" style="font-size: 30px; margin-bottom: 12px;"></i><br>
+                <span id="file-name-display" style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px;">
+                    Click to select files
                 </span>
             </div>
 
             <button onclick="uploadSample()">Upload</button>
+            <p class="modal-close" onclick="closeModals()">Cancel</p>
+        </div>
+    </div>
+
+    <!-- Create Collection Modal -->
+    <div class="modal-overlay hidden" id="collection-modal">
+        <div class="modal">
+            <h2>Create Collection</h2>
+            
+            <input type="text" id="col-name" placeholder="Collection Name">
+            <textarea id="col-description" placeholder="Description (optional)"></textarea>
+            
+            <input type="file" id="col-image" class="hidden" accept="image/*">
+            <div class="file-drop small" onclick="document.getElementById('col-image').click()">
+                <i class="fa-solid fa-image" style="font-size: 24px; margin-bottom: 8px;"></i><br>
+                <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px;">
+                    Upload Thumbnail (1:1)
+                </span>
+            </div>
+
+            <div id="col-image-preview" class="image-preview hidden empty">
+                <i class="fa-solid fa-image"></i>
+            </div>
+
+            <button onclick="createCollection()">Create Collection</button>
+            <p class="modal-close" onclick="closeModals()">Cancel</p>
+        </div>
+    </div>
+
+    <!-- Edit Account Modal -->
+    <div class="modal-overlay hidden" id="account-modal">
+        <div class="modal">
+            <h2>Edit Profile</h2>
+            
+            <input type="text" id="acc-username" placeholder="Username">
+            
+            <input type="file" id="acc-avatar" class="hidden" accept="image/*">
+            <div class="file-drop small" onclick="document.getElementById('acc-avatar').click()">
+                <i class="fa-solid fa-user" style="font-size: 24px; margin-bottom: 8px;"></i><br>
+                <span style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px;">
+                    Upload Profile Picture
+                </span>
+            </div>
+
+            <div id="acc-avatar-preview" class="image-preview hidden empty">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <button onclick="saveAccountChanges()">Save Changes</button>
             <p class="modal-close" onclick="closeModals()">Cancel</p>
         </div>
     </div>
@@ -545,7 +1049,7 @@
         // -----------------------------------------------------
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, query, orderBy, where, deleteDoc, arrayUnion, arrayRemove, increment } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
           apiKey: "AIzaSyDHtQ80PZrnbx-7avGEei6-hkKASKKufFw",
@@ -570,34 +1074,65 @@
         // 2. APP STATE
         // -----------------------------------------------------
         let currentUser = null;
+        let userData = null;
         let userCredits = 0;
         let currentTrack = null;
         let allSamples = [];
+        let allCollections = [];
+        let allUsers = [];
+        let currentView = 'home';
+        let currentCollection = null;
+        let currentProfileUser = null;
+        let searchMode = 'samples';
         const audio = document.getElementById('global-audio');
+
+        // Redeem codes database (in production, store in Firestore with better security)
+        const REDEEM_CODES = {
+            'LOOPD15': { credits: 15, singleUse: true }
+        };
 
         // -----------------------------------------------------
         // 3. AUTHENTICATION LOGIC
         // -----------------------------------------------------
-        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
-        window.closeModals = () => document.querySelectorAll('.modal-overlay').forEach(el => el.classList.add('hidden'));
+        window.showAuthModal = () => {
+            // Clear the form
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('auth-modal').classList.remove('hidden');
+        };
+        
+        window.closeModals = () => {
+            document.querySelectorAll('.modal-overlay').forEach(el => el.classList.add('hidden'));
+        };
 
         window.handleAuth = async () => {
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value.trim();
             const pass = document.getElementById('password').value;
+
+            if (!email || !pass) {
+                alert('Please enter email and password');
+                return;
+            }
 
             try {
                 await signInWithEmailAndPassword(auth, email, pass);
+                closeModals();
             } catch (error) {
-                if(error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                if(error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password') {
                     try {
                         const userCred = await createUserWithEmailAndPassword(auth, email, pass);
                         await setDoc(doc(db, "users", userCred.user.uid), {
                             email: email,
+                            username: email.split('@')[0],
                             credits: 5,
                             downloads: [],
-                            likes: []
+                            likes: [],
+                            likedCollections: [],
+                            redeemedCodes: [],
+                            createdAt: new Date()
                         });
                         alert("Account created! You have 5 Free Credits.");
+                        closeModals();
                     } catch (signupErr) {
                         alert("Error: " + signupErr.message);
                     }
@@ -605,7 +1140,6 @@
                     alert("Error: " + error.message);
                 }
             }
-            closeModals();
         };
 
         onAuthStateChanged(auth, async (user) => {
@@ -615,81 +1149,418 @@
             if (user) {
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists()) {
-                    userCredits = userDoc.data().credits;
+                    userData = userDoc.data();
+                    userCredits = userData.credits || 0;
+                    
                     ui.innerHTML = `
-                        <div class="credits-badge">${userCredits} Credits</div>
-                        <div style="cursor:pointer; text-transform: uppercase; letter-spacing: 1px;" onclick="logout()">Sign Out</div>
+                        <div class="credits-badge" onclick="switchView('redeem')" title="Click to redeem codes">${userCredits} Credits</div>
+                        <button class="profile-btn" onclick="viewProfile('${user.uid}')">Profile</button>
+                        <div style="cursor:pointer; text-transform: uppercase; letter-spacing: 0.5px;" onclick="logout()">Sign Out</div>
                     `;
                 }
+                switchView(currentView);
             } else {
                 ui.innerHTML = `<button class="auth-btn" onclick="showAuthModal()">Log In</button>`;
+                userData = null;
                 userCredits = 0;
+                switchView('home');
             }
         });
 
         window.logout = () => signOut(auth);
 
         // -----------------------------------------------------
-        // 4. SUPABASE UPLOAD & FIRESTORE SAVE
+        // 4. VIEW MANAGEMENT
         // -----------------------------------------------------
-        window.openUploadModal = () => {
-            if(!currentUser) return alert("Please log in to upload.");
-            document.getElementById('upload-modal').classList.remove('hidden');
-        };
-
-        document.getElementById('up-file').addEventListener('change', function() {
-            if(this.files[0]) document.getElementById('file-name-display').innerText = this.files[0].name;
-        });
-
-        window.uploadSample = async () => {
-            const file = document.getElementById('up-file').files[0];
-            const name = document.getElementById('up-name').value;
-            const bpm = document.getElementById('up-bpm').value;
-            const key = document.getElementById('up-key').value;
-
-            if(!file || !name) return alert("Please fill all fields");
-
-            const fileName = `${Date.now()}_${file.name}`;
-            const { data, error } = await supabase.storage.from('samples').upload(fileName, file);
-
-            if(error) return alert("Upload failed: " + error.message);
-
-            const { data: { publicUrl } } = supabase.storage.from('samples').getPublicUrl(fileName);
-
-            await addDoc(collection(db, "samples"), {
-                name: name,
-                bpm: bpm,
-                key: key,
-                url: publicUrl,
-                uploaderId: currentUser.uid,
-                createdAt: new Date()
-            });
-
-            alert("Sample Uploaded Successfully!");
-            closeModals();
-            loadSamples();
-        };
-
-        // -----------------------------------------------------
-        // 5. DISPLAY SAMPLES & PLAYBACK
-        // -----------------------------------------------------
-        async function loadSamples(filter = 'all') {
-            const list = document.getElementById('sample-list');
-            list.innerHTML = '<div style="padding:60px 0; text-align:center; color:#333; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">Refreshing...</div>';
-
-            let q = query(collection(db, "samples"));
+        window.switchView = (view) => {
+            currentView = view;
             
+            // Update active nav item
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            const navItems = document.querySelectorAll('.nav-item');
+            const viewMap = { 'home': 0, 'collections': 1, 'browse': 2, 'likes': 3, 'redeem': 4 };
+            if (viewMap[view] !== undefined) {
+                navItems[viewMap[view]].classList.add('active');
+            }
+
+            const content = document.getElementById('content-area');
+            
+            switch(view) {
+                case 'home':
+                    renderHomePage(content);
+                    break;
+                case 'collections':
+                    renderCollectionsPage(content);
+                    break;
+                case 'browse':
+                    renderBrowsePage(content);
+                    break;
+                case 'likes':
+                    renderLikesPage(content);
+                    break;
+                case 'redeem':
+                    renderRedeemPage(content);
+                    break;
+            }
+        };
+
+        async function renderHomePage(content) {
+            const samplesSnapshot = await getDocs(collection(db, "samples"));
+            const collectionsSnapshot = await getDocs(collection(db, "collections"));
+            
+            const totalSamples = samplesSnapshot.size;
+            const totalCollections = collectionsSnapshot.size;
+            
+            // Get top collections by likes
+            const featuredCollections = [];
+            collectionsSnapshot.forEach(doc => {
+                const data = doc.data();
+                featuredCollections.push({ 
+                    id: doc.id, 
+                    ...data,
+                    likeCount: data.likes ? data.likes.length : 0
+                });
+            });
+            featuredCollections.sort((a, b) => b.likeCount - a.likeCount);
+
+            content.innerHTML = `
+                <div class="home-hero">
+                    <h1>LOOPD</h1>
+                    <p>Infinite Sound Library</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">${totalSamples}</div>
+                        <div class="stat-label">Total Samples</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${totalCollections}</div>
+                        <div class="stat-label">Collections</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${currentUser ? userCredits : 0}</div>
+                        <div class="stat-label">Your Credits</div>
+                    </div>
+                </div>
+
+                <div class="featured-collections">
+                    <div class="section-header">
+                        <h2 class="section-title">Top Collections</h2>
+                        ${currentUser ? '<button class="create-collection-btn" onclick="showCreateCollection()">+ Create</button>' : ''}
+                    </div>
+                    <div class="collections-grid" id="featured-grid"></div>
+                </div>
+            `;
+
+            const grid = document.getElementById('featured-grid');
+            if (featuredCollections.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h3>No Collections Yet</h3>
+                        <p>Create your first collection</p>
+                    </div>
+                `;
+            } else {
+                featuredCollections.slice(0, 6).forEach(col => {
+                    const isLiked = currentUser && userData.likedCollections && userData.likedCollections.includes(col.id);
+                    grid.innerHTML += `
+                        <div class="collection-card" onclick="viewCollection('${col.id}')">
+                            <div class="collection-image">
+                                ${col.imageUrl ? `<img src="${col.imageUrl}" alt="${col.name}">` : '<i class="fa-solid fa-music"></i>'}
+                            </div>
+                            <div class="collection-info">
+                                <div class="collection-name">${col.name}</div>
+                                <div class="collection-meta">
+                                    <span>${col.sampleCount || 0} Samples</span>
+                                    <span class="like-btn ${isLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleCollectionLike('${col.id}')">
+                                        <i class="fa${isLiked ? '-solid' : '-regular'} fa-heart"></i> ${col.likeCount || 0}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        async function renderCollectionsPage(content) {
+            const snapshot = await getDocs(collection(db, "collections"));
+            allCollections = [];
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                allCollections.push({ 
+                    id: doc.id, 
+                    ...data,
+                    likeCount: data.likes ? data.likes.length : 0
+                });
+            });
+            
+            // Sort by likes
+            allCollections.sort((a, b) => b.likeCount - a.likeCount);
+
+            content.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">All Collections</h2>
+                    ${currentUser ? '<button class="create-collection-btn" onclick="showCreateCollection()">+ Create</button>' : ''}
+                </div>
+                <div class="collections-grid" id="collections-grid"></div>
+            `;
+
+            const grid = document.getElementById('collections-grid');
+            if (allCollections.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h3>No Collections Yet</h3>
+                        <p>Create your first collection</p>
+                    </div>
+                `;
+            } else {
+                allCollections.forEach(col => {
+                    const isLiked = currentUser && userData.likedCollections && userData.likedCollections.includes(col.id);
+                    grid.innerHTML += `
+                        <div class="collection-card" onclick="viewCollection('${col.id}')">
+                            <div class="collection-image">
+                                ${col.imageUrl ? `<img src="${col.imageUrl}" alt="${col.name}">` : '<i class="fa-solid fa-music"></i>'}
+                            </div>
+                            <div class="collection-info">
+                                <div class="collection-name">${col.name}</div>
+                                <div class="collection-meta">
+                                    <span>${col.sampleCount || 0} Samples</span>
+                                    <span class="like-btn ${isLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleCollectionLike('${col.id}')">
+                                        <i class="fa${isLiked ? '-solid' : '-regular'} fa-heart"></i> ${col.likeCount || 0}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        window.viewCollection = async (collectionId) => {
+            currentCollection = collectionId;
+            const colDoc = await getDoc(doc(db, "collections", collectionId));
+            const colData = colDoc.data();
+
+            const q = query(collection(db, "samples"), where("collectionId", "==", collectionId));
             const snapshot = await getDocs(q);
             allSamples = [];
-            snapshot.forEach(doc => allSamples.push({ id: doc.id, ...doc.data() }));
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                allSamples.push({ 
+                    id: doc.id, 
+                    ...data,
+                    likeCount: data.likes ? data.likes.length : 0
+                });
+            });
+            
+            // Sort by likes
+            allSamples.sort((a, b) => b.likeCount - a.likeCount);
 
-            list.innerHTML = '';
-            if(allSamples.length === 0) {
-                list.innerHTML = '<div style="padding:60px 0; text-align:center; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">No samples found</div>';
+            const content = document.getElementById('content-area');
+            const isLiked = currentUser && userData.likedCollections && userData.likedCollections.includes(collectionId);
+            const canDelete = currentUser && colData.createdBy === currentUser.uid;
+
+            content.innerHTML = `
+                <div class="back-btn" onclick="switchView('collections')">← Back</div>
+                
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">${colData.name}</h2>
+                        ${colData.description ? `<p style="margin-top: 8px; font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">${colData.description}</p>` : ''}
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="like-btn ${isLiked ? 'liked' : ''}" onclick="toggleCollectionLike('${collectionId}')" style="font-size: 16px;">
+                            <i class="fa${isLiked ? '-solid' : '-regular'} fa-heart"></i> ${colData.likes ? colData.likes.length : 0}
+                        </span>
+                        ${canDelete ? `<button class="account-btn danger" onclick="deleteCollection('${collectionId}')">Delete Collection</button>` : ''}
+                    </div>
+                </div>
+
+                <div class="sample-header">
+                    <div></div>
+                    <div>Name</div>
+                    <div>BPM</div>
+                    <div>Key</div>
+                    <div>Tags</div>
+                    <div style="text-align: right">Actions</div>
+                </div>
+
+                <div id="sample-list"></div>
+            `;
+
+            renderSampleList();
+        };
+
+        async function renderBrowsePage(content) {
+            const q = query(collection(db, "samples"));
+            const snapshot = await getDocs(q);
+            allSamples = [];
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                allSamples.push({ 
+                    id: doc.id, 
+                    ...data,
+                    likeCount: data.likes ? data.likes.length : 0
+                });
+            });
+            
+            // Sort by likes
+            allSamples.sort((a, b) => b.likeCount - a.likeCount);
+
+            content.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">All Samples</h2>
+                    <div style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px;">
+                        ${allSamples.length} Total
+                    </div>
+                </div>
+
+                <div class="sample-header">
+                    <div></div>
+                    <div>Name</div>
+                    <div>BPM</div>
+                    <div>Key</div>
+                    <div>Tags</div>
+                    <div style="text-align: right">Actions</div>
+                </div>
+
+                <div id="sample-list"></div>
+            `;
+
+            renderSampleList();
+        }
+
+        async function renderLikesPage(content) {
+            if (!currentUser) {
+                content.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-heart"></i>
+                        <h3>Sign In Required</h3>
+                        <p>Log in to see your liked samples</p>
+                    </div>
+                `;
                 return;
             }
 
+            const likedSampleIds = userData.likes || [];
+            
+            if (likedSampleIds.length === 0) {
+                content.innerHTML = `
+                    <div class="section-header">
+                        <h2 class="section-title">Liked Samples</h2>
+                    </div>
+                    <div class="empty-state">
+                        <i class="fa-solid fa-heart"></i>
+                        <h3>No Liked Samples</h3>
+                        <p>Like samples to see them here</p>
+                    </div>
+                `;
+                return;
+            }
+
+            allSamples = [];
+            for (const sampleId of likedSampleIds) {
+                try {
+                    const sampleDoc = await getDoc(doc(db, "samples", sampleId));
+                    if (sampleDoc.exists()) {
+                        const data = sampleDoc.data();
+                        allSamples.push({
+                            id: sampleDoc.id,
+                            ...data,
+                            likeCount: data.likes ? data.likes.length : 0
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error fetching liked sample:', error);
+                }
+            }
+
+            content.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">Liked Samples</h2>
+                    <div style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px;">
+                        ${allSamples.length} Samples
+                    </div>
+                </div>
+
+                <div class="sample-header">
+                    <div></div>
+                    <div>Name</div>
+                    <div>BPM</div>
+                    <div>Key</div>
+                    <div>Tags</div>
+                    <div style="text-align: right">Actions</div>
+                </div>
+
+                <div id="sample-list"></div>
+            `;
+
+            renderSampleList();
+        }
+
+        async function renderRedeemPage(content) {
+            if (!currentUser) {
+                content.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-ticket"></i>
+                        <h3>Sign In Required</h3>
+                        <p>Log in to redeem codes</p>
+                    </div>
+                `;
+                return;
+            }
+
+            content.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">Redeem Code</h2>
+                </div>
+
+                <div style="max-width: 500px; margin: 0 auto; padding: 40px 0;">
+                    <div style="background: #f5f5f5; padding: 30px; border: 1px solid #000; margin-bottom: 30px;">
+                        <h3 style="font-size: 16px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px;">Your Credits</h3>
+                        <div style="font-size: 48px; font-weight: 700;">${userCredits}</div>
+                    </div>
+
+                    <input type="text" id="redeem-code" placeholder="Enter Code" style="width: 100%; padding: 15px; border: 1px solid #000; font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; font-family: 'Space Grotesk', monospace;">
+                    
+                    <button onclick="redeemCode()" style="width: 100%; padding: 15px; background: #000; color: #fff; border: 1px solid #000; cursor: pointer; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Space Grotesk', monospace;">
+                        Redeem Code
+                    </button>
+
+                    <div style="margin-top: 30px; padding: 20px; border: 1px solid #e0e0e0;">
+                        <h4 style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;">Redeemed Codes</h4>
+                        <div id="redeemed-list" style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">
+                            ${userData.redeemedCodes && userData.redeemedCodes.length > 0 ? userData.redeemedCodes.join(', ') : 'None yet'}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSampleList() {
+            const list = document.getElementById('sample-list');
+            if (!list) return;
+
+            if (allSamples.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-music"></i>
+                        <h3>No Samples</h3>
+                        <p>Upload samples to get started</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = '';
             allSamples.forEach(s => {
+                const isLiked = currentUser && userData.likes && userData.likes.includes(s.id);
+                const canDelete = currentUser && s.uploaderId === currentUser.uid;
+                
                 const div = document.createElement('div');
                 div.className = 'sample-row';
                 div.setAttribute('data-id', s.id);
@@ -698,26 +1569,354 @@
                         <i class="fa-solid fa-play" id="icon-${s.id}"></i>
                     </div>
                     <div class="sample-name">${s.name}</div>
-                    <div>${s.bpm}</div>
-                    <div>${s.key}</div>
+                    <div>${s.bpm || '—'}</div>
+                    <div>${s.key || '—'}</div>
+                    <div style="font-size: 9px; color: #666;">${s.tags || '—'}</div>
                     <div class="row-actions">
-                        <i class="fa-regular fa-heart action-icon"></i>
-                        <i class="fa-solid fa-download action-icon" onclick="downloadSample('${s.id}')"></i>
+                        <span class="action-icon ${isLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleSampleLike('${s.id}')">
+                            <i class="fa${isLiked ? '-solid' : '-regular'} fa-heart"></i> ${s.likeCount || 0}
+                        </span>
+                        <i class="fa-solid fa-download action-icon" onclick="event.stopPropagation(); downloadSample('${s.id}')"></i>
+                        ${canDelete ? `<i class="fa-solid fa-trash action-icon" style="color: #ff0000;" onclick="event.stopPropagation(); deleteSample('${s.id}')"></i>` : ''}
                     </div>
                 `;
                 list.appendChild(div);
             });
         }
 
+        // -----------------------------------------------------
+        // 5. LIKING SYSTEM
+        // -----------------------------------------------------
+        window.toggleSampleLike = async (sampleId) => {
+            if (!currentUser) {
+                alert('Please log in to like samples');
+                return;
+            }
+
+            const sampleRef = doc(db, "samples", sampleId);
+            const userRef = doc(db, "users", currentUser.uid);
+            
+            const isLiked = userData.likes && userData.likes.includes(sampleId);
+
+            try {
+                if (isLiked) {
+                    // Unlike
+                    await updateDoc(sampleRef, {
+                        likes: arrayRemove(currentUser.uid)
+                    });
+                    await updateDoc(userRef, {
+                        likes: arrayRemove(sampleId)
+                    });
+                    userData.likes = userData.likes.filter(id => id !== sampleId);
+                } else {
+                    // Like
+                    await updateDoc(sampleRef, {
+                        likes: arrayUnion(currentUser.uid)
+                    });
+                    await updateDoc(userRef, {
+                        likes: arrayUnion(sampleId)
+                    });
+                    if (!userData.likes) userData.likes = [];
+                    userData.likes.push(sampleId);
+                }
+                
+                // Refresh current view
+                switchView(currentView);
+            } catch (error) {
+                console.error('Error toggling like:', error);
+                alert('Error updating like status');
+            }
+        };
+
+        window.toggleCollectionLike = async (collectionId) => {
+            if (!currentUser) {
+                alert('Please log in to like collections');
+                return;
+            }
+
+            const collectionRef = doc(db, "collections", collectionId);
+            const userRef = doc(db, "users", currentUser.uid);
+            
+            const isLiked = userData.likedCollections && userData.likedCollections.includes(collectionId);
+
+            try {
+                if (isLiked) {
+                    // Unlike
+                    await updateDoc(collectionRef, {
+                        likes: arrayRemove(currentUser.uid)
+                    });
+                    await updateDoc(userRef, {
+                        likedCollections: arrayRemove(collectionId)
+                    });
+                    userData.likedCollections = userData.likedCollections.filter(id => id !== collectionId);
+                } else {
+                    // Like
+                    await updateDoc(collectionRef, {
+                        likes: arrayUnion(currentUser.uid)
+                    });
+                    await updateDoc(userRef, {
+                        likedCollections: arrayUnion(collectionId)
+                    });
+                    if (!userData.likedCollections) userData.likedCollections = [];
+                    userData.likedCollections.push(collectionId);
+                }
+                
+                // Refresh current view
+                if (currentView === 'home') {
+                    renderHomePage(document.getElementById('content-area'));
+                } else {
+                    switchView(currentView);
+                }
+            } catch (error) {
+                console.error('Error toggling collection like:', error);
+                alert('Error updating like status');
+            }
+        };
+
+        // -----------------------------------------------------
+        // 6. COLLECTION MANAGEMENT
+        // -----------------------------------------------------
+        window.showCreateCollection = () => {
+            if (!currentUser) {
+                alert('Please log in to create collections');
+                return;
+            }
+            document.getElementById('collection-modal').classList.remove('hidden');
+        };
+
+        document.getElementById('col-image').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const preview = document.getElementById('col-image-preview');
+                    preview.classList.remove('hidden', 'empty');
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        window.createCollection = async () => {
+            const name = document.getElementById('col-name').value.trim();
+            const description = document.getElementById('col-description').value.trim();
+            const imageFile = document.getElementById('col-image').files[0];
+
+            if (!name) {
+                alert('Please enter a collection name');
+                return;
+            }
+
+            let imageUrl = null;
+
+            if (imageFile) {
+                const fileName = `collection_${Date.now()}_${imageFile.name}`;
+                const { data, error } = await supabase.storage
+                    .from('samples')
+                    .upload(fileName, imageFile);
+
+                if (error) {
+                    alert('Image upload failed: ' + error.message);
+                    return;
+                }
+
+                const { data: { publicUrl } } = supabase.storage
+                    .from('samples')
+                    .getPublicUrl(fileName);
+                imageUrl = publicUrl;
+            }
+
+            await addDoc(collection(db, "collections"), {
+                name: name,
+                description: description,
+                imageUrl: imageUrl,
+                createdBy: currentUser.uid,
+                createdAt: new Date(),
+                sampleCount: 0,
+                likes: []
+            });
+
+            alert('Collection created!');
+            closeModals();
+            
+            document.getElementById('col-name').value = '';
+            document.getElementById('col-description').value = '';
+            document.getElementById('col-image').value = '';
+            document.getElementById('col-image-preview').classList.add('hidden', 'empty');
+            document.getElementById('col-image-preview').innerHTML = '<i class="fa-solid fa-image"></i>';
+            
+            await loadCollectionsForSelect();
+            switchView('collections');
+        };
+
+        window.deleteCollection = async (collectionId) => {
+            if (!confirm('Are you sure you want to delete this collection? This will not delete the samples.')) {
+                return;
+            }
+
+            try {
+                await deleteDoc(doc(db, "collections", collectionId));
+                alert('Collection deleted');
+                switchView('collections');
+            } catch (error) {
+                alert('Error deleting collection: ' + error.message);
+            }
+        };
+
+        // -----------------------------------------------------
+        // 7. UPLOAD MANAGEMENT
+        // -----------------------------------------------------
+        window.openUploadModal = () => {
+            if (!currentUser) {
+                alert('Please log in to upload');
+                return;
+            }
+            loadCollectionsForSelect();
+            document.getElementById('upload-modal').classList.remove('hidden');
+        };
+
+        window.toggleUploadType = () => {
+            const isSingle = document.getElementById('upload-single').checked;
+            const selector = document.getElementById('collection-selector');
+            
+            if (isSingle) {
+                selector.classList.add('hidden');
+            } else {
+                selector.classList.remove('hidden');
+            }
+        };
+
+        async function loadCollectionsForSelect() {
+            const select = document.getElementById('collection-select');
+            const snapshot = await getDocs(collection(db, "collections"));
+            
+            select.innerHTML = '<option value="">Select Collection</option>';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                select.innerHTML += `<option value="${doc.id}">${data.name}</option>`;
+            });
+        }
+
+        document.getElementById('up-file').addEventListener('change', function() {
+            const count = this.files.length;
+            const display = document.getElementById('file-name-display');
+            if (count > 0) {
+                display.innerText = count === 1 ? this.files[0].name : `${count} files selected`;
+            }
+        });
+
+        window.uploadSample = async () => {
+            const files = document.getElementById('up-file').files;
+            const name = document.getElementById('up-name').value.trim();
+            const bpm = document.getElementById('up-bpm').value.trim();
+            const key = document.getElementById('up-key').value.trim();
+            const tags = document.getElementById('up-tags').value.trim();
+            const isCollection = document.getElementById('upload-collection').checked;
+            const collectionId = isCollection ? document.getElementById('collection-select').value : null;
+
+            if (files.length === 0) {
+                alert('Please select at least one file');
+                return;
+            }
+
+            if (isCollection && !collectionId) {
+                alert('Please select a collection');
+                return;
+            }
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const fileName = `${Date.now()}_${file.name}`;
+                
+                const { data, error } = await supabase.storage
+                    .from('samples')
+                    .upload(fileName, file);
+
+                if (error) {
+                    alert(`Upload failed for ${file.name}: ${error.message}`);
+                    continue;
+                }
+
+                const { data: { publicUrl } } = supabase.storage
+                    .from('samples')
+                    .getPublicUrl(fileName);
+
+                const sampleData = {
+                    name: name || file.name.replace(/\.[^/.]+$/, ""),
+                    bpm: bpm || null,
+                    key: key || null,
+                    tags: tags || null,
+                    url: publicUrl,
+                    uploaderId: currentUser.uid,
+                    createdAt: new Date(),
+                    likes: []
+                };
+
+                if (collectionId) {
+                    sampleData.collectionId = collectionId;
+                }
+
+                await addDoc(collection(db, "samples"), sampleData);
+
+                if (collectionId) {
+                    const colRef = doc(db, "collections", collectionId);
+                    await updateDoc(colRef, {
+                        sampleCount: increment(1)
+                    });
+                }
+            }
+
+            alert(`${files.length} sample(s) uploaded successfully!`);
+            closeModals();
+            
+            document.getElementById('up-name').value = '';
+            document.getElementById('up-bpm').value = '';
+            document.getElementById('up-key').value = '';
+            document.getElementById('up-tags').value = '';
+            document.getElementById('up-file').value = '';
+            document.getElementById('file-name-display').innerText = 'Click to select files';
+            
+            switchView(currentView);
+        };
+
+        window.deleteSample = async (sampleId) => {
+            if (!confirm('Are you sure you want to delete this sample?')) {
+                return;
+            }
+
+            try {
+                const sampleDoc = await getDoc(doc(db, "samples", sampleId));
+                const sampleData = sampleDoc.data();
+                
+                // Decrease collection count if in a collection
+                if (sampleData.collectionId) {
+                    const colRef = doc(db, "collections", sampleData.collectionId);
+                    await updateDoc(colRef, {
+                        sampleCount: increment(-1)
+                    });
+                }
+                
+                await deleteDoc(doc(db, "samples", sampleId));
+                alert('Sample deleted');
+                switchView(currentView);
+            } catch (error) {
+                alert('Error deleting sample: ' + error.message);
+            }
+        };
+
+        // -----------------------------------------------------
+        // 8. PLAYBACK
+        // -----------------------------------------------------
         window.playTrack = (id) => {
             const sample = allSamples.find(s => s.id === id);
-            if(!sample) return;
+            if (!sample) return;
 
             document.querySelectorAll('.sample-row').forEach(r => r.classList.remove('playing'));
             document.querySelectorAll('.fa-pause').forEach(i => i.classList.replace('fa-pause', 'fa-play'));
 
-            if(currentTrack && currentTrack.id === id && !audio.paused) {
+            if (currentTrack && currentTrack.id === id && !audio.paused) {
                 audio.pause();
+                document.getElementById('main-play-icon').classList.replace('fa-pause', 'fa-play');
                 return;
             }
 
@@ -726,16 +1925,16 @@
             audio.play();
 
             const row = document.querySelector(`.sample-row[data-id="${id}"]`);
-            if(row) row.classList.add('playing');
+            if (row) row.classList.add('playing');
             
             const icon = document.getElementById(`icon-${id}`);
-            if(icon) {
+            if (icon) {
                 icon.classList.remove('fa-play');
                 icon.classList.add('fa-pause');
             }
 
             document.getElementById('player-title').innerText = sample.name;
-            document.getElementById('player-author').innerText = `${sample.bpm} BPM — ${sample.key}`;
+            document.getElementById('player-author').innerText = `${sample.bpm || '—'} BPM — ${sample.key || '—'}`;
             document.getElementById('main-play-icon').classList.replace('fa-play', 'fa-pause');
         };
 
@@ -750,51 +1949,493 @@
         };
 
         // -----------------------------------------------------
-        // 6. DOWNLOADING & CREDITS
+        // 9. DOWNLOAD WITH CREDIT CHECK
         // -----------------------------------------------------
         window.downloadSample = async (id) => {
             let sampleId = id || (currentTrack ? currentTrack.id : null);
             if (!sampleId) return;
             
-            if(!currentUser) return alert("Log in to download.");
-            if(userCredits < 1) return alert("Not enough credits!");
+            if (!currentUser) {
+                alert('Log in to download');
+                return;
+            }
+            
+            // Strict credit check
+            const freshUserDoc = await getDoc(doc(db, "users", currentUser.uid));
+            const freshCredits = freshUserDoc.data().credits || 0;
+            
+            if (freshCredits < 1) {
+                alert('Not enough credits! Redeem a code or purchase more.');
+                return;
+            }
 
             const sample = allSamples.find(s => s.id === sampleId);
 
-            const userRef = doc(db, "users", currentUser.uid);
-            await updateDoc(userRef, {
-                credits: userCredits - 1
-            });
-            
-            userCredits--;
-            document.querySelector('.credits-badge').innerText = `${userCredits} Credits`;
+            try {
+                const userRef = doc(db, "users", currentUser.uid);
+                
+                // Atomic decrement to prevent race conditions
+                await updateDoc(userRef, {
+                    credits: increment(-1),
+                    downloads: arrayUnion(sampleId)
+                });
+                
+                userCredits = freshCredits - 1;
+                userData.credits = userCredits;
+                
+                // Update UI
+                document.querySelector('.credits-badge').innerText = `${userCredits} Credits`;
 
-            const a = document.createElement('a');
-            a.href = sample.url;
-            a.target = '_blank';
-            a.download = sample.name;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
+                // Trigger download
+                const a = document.createElement('a');
+                a.href = sample.url;
+                a.target = '_blank';
+                a.download = sample.name;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                
+                alert('Download started! 1 credit deducted.');
+            } catch (error) {
+                console.error('Download error:', error);
+                alert('Error processing download');
+            }
+        };
 
         window.downloadCurrent = () => window.downloadSample(null);
 
         // -----------------------------------------------------
-        // 7. TABS LOGIC
+        // 10. REDEEM CODE SYSTEM
         // -----------------------------------------------------
-        window.switchTab = (tabName) => {
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+        window.redeemCode = async () => {
+            const code = document.getElementById('redeem-code').value.trim().toUpperCase();
             
-            document.getElementById('page-title').innerText = tabName === 'browse' ? 'Browse Library' : 
-                                                              tabName === 'likes' ? 'Liked Sounds' : 'My Downloads';
-            
-            loadSamples(); 
+            if (!code) {
+                alert('Please enter a code');
+                return;
+            }
+
+            if (!REDEEM_CODES[code]) {
+                alert('Invalid code');
+                return;
+            }
+
+            const codeData = REDEEM_CODES[code];
+            const redeemedCodes = userData.redeemedCodes || [];
+
+            if (codeData.singleUse && redeemedCodes.includes(code)) {
+                alert('You have already redeemed this code');
+                return;
+            }
+
+            try {
+                const userRef = doc(db, "users", currentUser.uid);
+                await updateDoc(userRef, {
+                    credits: increment(codeData.credits),
+                    redeemedCodes: arrayUnion(code)
+                });
+
+                userCredits += codeData.credits;
+                userData.credits = userCredits;
+                userData.redeemedCodes.push(code);
+
+                document.querySelector('.credits-badge').innerText = `${userCredits} Credits`;
+                alert(`Success! ${codeData.credits} credits added.`);
+                
+                document.getElementById('redeem-code').value = '';
+                renderRedeemPage(document.getElementById('content-area'));
+            } catch (error) {
+                console.error('Redeem error:', error);
+                alert('Error redeeming code');
+            }
         };
 
-        // Initial Load
-        loadSamples();
+        // -----------------------------------------------------
+        // 11. SEARCH WITH MODES
+        // -----------------------------------------------------
+        window.setSearchMode = (mode) => {
+            searchMode = mode;
+            document.querySelectorAll('.search-mode span').forEach(s => s.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            document.getElementById('search-input').value = '';
+            
+            // Clear any active search results
+            if (currentView === 'browse' || currentView === 'collections') {
+                switchView(currentView);
+            }
+        };
+
+        window.handleSearch = async () => {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+            
+            if (searchTerm.length < 2) {
+                if (searchMode === 'samples' && (currentView === 'browse' || currentView === 'likes')) {
+                    renderSampleList();
+                } else if (searchMode === 'collections' && currentView === 'collections') {
+                    switchView('collections');
+                }
+                return;
+            }
+
+            const content = document.getElementById('content-area');
+
+            if (searchMode === 'users') {
+                // Search users
+                const usersSnapshot = await getDocs(collection(db, "users"));
+                const matchedUsers = [];
+                
+                usersSnapshot.forEach(doc => {
+                    const data = doc.data();
+                    const username = data.username || '';
+                    const email = data.email || '';
+                    
+                    if (username.toLowerCase().includes(searchTerm) || 
+                        email.toLowerCase().includes(searchTerm)) {
+                        matchedUsers.push({ id: doc.id, ...data });
+                    }
+                });
+
+                content.innerHTML = `
+                    <div class="section-header">
+                        <h2 class="section-title">User Search Results</h2>
+                        <div style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px;">
+                            ${matchedUsers.length} Users Found
+                        </div>
+                    </div>
+                    <div id="user-results"></div>
+                `;
+
+                const results = document.getElementById('user-results');
+                if (matchedUsers.length === 0) {
+                    results.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fa-solid fa-user"></i>
+                            <h3>No Users Found</h3>
+                            <p>Try different keywords</p>
+                        </div>
+                    `;
+                } else {
+                    matchedUsers.forEach(user => {
+                        results.innerHTML += `
+                            <div class="user-card" onclick="viewProfile('${user.id}')">
+                                <div class="user-avatar-small">
+                                    ${user.avatarUrl ? `<img src="${user.avatarUrl}" alt="${user.username}">` : '<i class="fa-solid fa-user"></i>'}
+                                </div>
+                                <div class="user-info-small">
+                                    <div class="user-name-small">${user.username || 'User'}</div>
+                                    <div class="user-meta-small">${user.email}</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+            } else if (searchMode === 'collections') {
+                const filtered = allCollections.filter(c =>
+                    c.name.toLowerCase().includes(searchTerm) ||
+                    (c.description && c.description.toLowerCase().includes(searchTerm))
+                );
+
+                const grid = document.getElementById('collections-grid');
+                if (!grid) return;
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <h3>No Results</h3>
+                            <p>Try different keywords</p>
+                        </div>
+                    `;
+                } else {
+                    grid.innerHTML = '';
+                    filtered.forEach(col => {
+                        const isLiked = currentUser && userData.likedCollections && userData.likedCollections.includes(col.id);
+                        grid.innerHTML += `
+                            <div class="collection-card" onclick="viewCollection('${col.id}')">
+                                <div class="collection-image">
+                                    ${col.imageUrl ? `<img src="${col.imageUrl}" alt="${col.name}">` : '<i class="fa-solid fa-music"></i>'}
+                                </div>
+                                <div class="collection-info">
+                                    <div class="collection-name">${col.name}</div>
+                                    <div class="collection-meta">
+                                        <span>${col.sampleCount || 0} Samples</span>
+                                        <span class="like-btn ${isLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleCollectionLike('${col.id}')">
+                                            <i class="fa${isLiked ? '-solid' : '-regular'} fa-heart"></i> ${col.likeCount || 0}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+            } else {
+                // Search samples
+                const filtered = allSamples.filter(s =>
+                    s.name.toLowerCase().includes(searchTerm) ||
+                    (s.tags && s.tags.toLowerCase().includes(searchTerm)) ||
+                    (s.key && s.key.toLowerCase().includes(searchTerm))
+                );
+
+                const list = document.getElementById('sample-list');
+                if (!list) return;
+
+                if (filtered.length === 0) {
+                    list.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <h3>No Results</h3>
+                            <p>Try different keywords</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                list.innerHTML = '';
+                filtered.forEach(s => {
+                    const isLiked = currentUser && userData.likes && userData.likes.includes(s.id);
+                    const canDelete = currentUser && s.uploaderId === currentUser.uid;
+                    
+                    const div = document.createElement('div');
+                    div.className = 'sample-row';
+                    div.setAttribute('data-id', s.id);
+                    div.innerHTML = `
+                        <div class="play-btn" onclick="playTrack('${s.id}')">
+                            <i class="fa-solid fa-play" id="icon-${s.id}"></i>
+                        </div>
+                        <div class="sample-name">${s.name}</div>
+                        <div>${s.bpm || '—'}</div>
+                        <div>${s.key || '—'}</div>
+                        <div style="font-size: 9px; color: #666;">${s.tags || '—'}</div>
+                        <div class="row-actions">
+                            <span class="action-icon ${isLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleSampleLike('${s.id}')">
+                                <i class="fa${isLiked ? '-solid' : '-regular'} fa-heart"></i> ${s.likeCount || 0}
+                            </span>
+                            <i class="fa-solid fa-download action-icon" onclick="event.stopPropagation(); downloadSample('${s.id}')"></i>
+                            ${canDelete ? `<i class="fa-solid fa-trash action-icon" style="color: #ff0000;" onclick="event.stopPropagation(); deleteSample('${s.id}')"></i>` : ''}
+                        </div>
+                    `;
+                    list.appendChild(div);
+                });
+            }
+        };
+
+        // -----------------------------------------------------
+        // 12. USER PROFILE SYSTEM
+        // -----------------------------------------------------
+        window.viewProfile = async (userId) => {
+            currentProfileUser = userId;
+            const userDoc = await getDoc(doc(db, "users", userId));
+            const profileData = userDoc.data();
+
+            // Get user's uploads
+            const q = query(collection(db, "samples"), where("uploaderId", "==", userId));
+            const samplesSnapshot = await getDocs(q);
+            const userSamples = [];
+            samplesSnapshot.forEach(doc => {
+                const data = doc.data();
+                userSamples.push({ 
+                    id: doc.id, 
+                    ...data,
+                    likeCount: data.likes ? data.likes.length : 0
+                });
+            });
+
+            // Get user's collections
+            const colQuery = query(collection(db, "collections"), where("createdBy", "==", userId));
+            const collectionsSnapshot = await getDocs(colQuery);
+            const userCollections = [];
+            collectionsSnapshot.forEach(doc => {
+                const data = doc.data();
+                userCollections.push({ 
+                    id: doc.id, 
+                    ...data,
+                    likeCount: data.likes ? data.likes.length : 0
+                });
+            });
+
+            const isOwnProfile = currentUser && currentUser.uid === userId;
+
+            const content = document.getElementById('content-area');
+            content.innerHTML = `
+                <div class="account-header">
+                    <div class="account-avatar">
+                        ${profileData.avatarUrl ? `<img src="${profileData.avatarUrl}" alt="${profileData.username}">` : '<i class="fa-solid fa-user"></i>'}
+                    </div>
+                    <div class="account-info">
+                        <div class="account-username">${profileData.username || 'User'}</div>
+                        <div class="account-email">${profileData.email}</div>
+                        <div class="account-stats">
+                            <div class="account-stat">
+                                <strong>${userSamples.length}</strong>
+                                Uploads
+                            </div>
+                            <div class="account-stat">
+                                <strong>${userCollections.length}</strong>
+                                Collections
+                            </div>
+                            ${isOwnProfile ? `<div class="account-stat"><strong>${userCredits}</strong>Credits</div>` : ''}
+                        </div>
+                        ${isOwnProfile ? `
+                            <div class="account-actions">
+                                <button class="account-btn" onclick="showEditProfile()">Edit Profile</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <div class="tab active" onclick="switchProfileTab('uploads')">Uploads</div>
+                    <div class="tab" onclick="switchProfileTab('collections')">Collections</div>
+                </div>
+
+                <div id="profile-content"></div>
+            `;
+
+            allSamples = userSamples;
+            switchProfileTab('uploads');
+        };
+
+        window.switchProfileTab = (tab) => {
+            document.querySelectorAll('.tabs .tab').forEach(t => t.classList.remove('active'));
+            event?.currentTarget?.classList.add('active');
+
+            const content = document.getElementById('profile-content');
+
+            if (tab === 'uploads') {
+                content.innerHTML = `
+                    <div class="sample-header">
+                        <div></div>
+                        <div>Name</div>
+                        <div>BPM</div>
+                        <div>Key</div>
+                        <div>Tags</div>
+                        <div style="text-align: right">Actions</div>
+                    </div>
+                    <div id="sample-list"></div>
+                `;
+                renderSampleList();
+            } else {
+                // Show collections
+                const userDoc = document.querySelector('.account-username');
+                if (!userDoc) return;
+
+                // Get collections again for this tab
+                const userId = currentProfileUser;
+                getDocs(query(collection(db, "collections"), where("createdBy", "==", userId)))
+                    .then(snapshot => {
+                        const cols = [];
+                        snapshot.forEach(doc => {
+                            const data = doc.data();
+                            cols.push({ 
+                                id: doc.id, 
+                                ...data,
+                                likeCount: data.likes ? data.likes.length : 0
+                            });
+                        });
+
+                        content.innerHTML = '<div class="collections-grid" id="profile-collections-grid"></div>';
+                        const grid = document.getElementById('profile-collections-grid');
+
+                        if (cols.length === 0) {
+                            grid.innerHTML = `
+                                <div class="empty-state">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                    <h3>No Collections</h3>
+                                    <p>This user hasn't created any collections yet</p>
+                                </div>
+                            `;
+                        } else {
+                            cols.forEach(col => {
+                                const isLiked = currentUser && userData.likedCollections && userData.likedCollections.includes(col.id);
+                                grid.innerHTML += `
+                                    <div class="collection-card" onclick="viewCollection('${col.id}')">
+                                        <div class="collection-image">
+                                            ${col.imageUrl ? `<img src="${col.imageUrl}" alt="${col.name}">` : '<i class="fa-solid fa-music"></i>'}
+                                        </div>
+                                        <div class="collection-info">
+                                            <div class="collection-name">${col.name}</div>
+                                            <div class="collection-meta">
+                                                <span>${col.sampleCount || 0} Samples</span>
+                                                <span class="like-btn ${isLiked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleCollectionLike('${col.id}')">
+                                                    <i class="fa${isLiked ? '-solid' : '-regular'} fa-heart"></i> ${col.likeCount || 0}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                        }
+                    });
+            }
+        };
+
+        window.showEditProfile = () => {
+            document.getElementById('acc-username').value = userData.username || '';
+            document.getElementById('account-modal').classList.remove('hidden');
+        };
+
+        document.getElementById('acc-avatar').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const preview = document.getElementById('acc-avatar-preview');
+                    preview.classList.remove('hidden', 'empty');
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        window.saveAccountChanges = async () => {
+            const username = document.getElementById('acc-username').value.trim();
+            const avatarFile = document.getElementById('acc-avatar').files[0];
+
+            if (!username) {
+                alert('Please enter a username');
+                return;
+            }
+
+            let avatarUrl = userData.avatarUrl || null;
+
+            if (avatarFile) {
+                const fileName = `avatar_${currentUser.uid}_${Date.now()}_${avatarFile.name}`;
+                const { data, error } = await supabase.storage
+                    .from('samples')
+                    .upload(fileName, avatarFile);
+
+                if (error) {
+                    alert('Avatar upload failed: ' + error.message);
+                    return;
+                }
+
+                const { data: { publicUrl } } = supabase.storage
+                    .from('samples')
+                    .getPublicUrl(fileName);
+                avatarUrl = publicUrl;
+            }
+
+            const userRef = doc(db, "users", currentUser.uid);
+            await updateDoc(userRef, {
+                username: username,
+                avatarUrl: avatarUrl
+            });
+
+            userData.username = username;
+            userData.avatarUrl = avatarUrl;
+
+            alert('Profile updated!');
+            closeModals();
+            
+            document.getElementById('acc-avatar').value = '';
+            document.getElementById('acc-avatar-preview').classList.add('hidden', 'empty');
+            document.getElementById('acc-avatar-preview').innerHTML = '<i class="fa-solid fa-user"></i>';
+            
+            viewProfile(currentUser.uid);
+        };
+
+        // Initial load
+        switchView('home');
 
     </script>
 </body>
