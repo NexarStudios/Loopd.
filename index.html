@@ -6,184 +6,443 @@
     <title>Loopd | Infinite Sounds</title>
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
     <style>
-        /* --- VISUAL STYLE: SHARP & MINIMAL --- */
-        :root {
-            --bg-body: #050505;
-            --bg-panel: #0F0F0F;
-            --bg-border: #222;
-            --primary: #4f46e5; /* Sharp Indigo */
-            --accent: #f43f5e; /* Sharp Pink */
-            --text-main: #fff;
-            --text-dim: #777;
-            --nav-width: 260px;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Space Grotesk', monospace; 
+            background: #000; 
+            color: #fff; 
+            height: 100vh; 
+            display: flex; 
+            overflow: hidden; 
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Manrope', sans-serif; }
-        
-        body { background: var(--bg-body); color: var(--text-main); height: 100vh; display: flex; overflow: hidden; }
-
-        /* Helpers */
-        .hidden { display: none !important; }
-        .btn { cursor: pointer; border: none; outline: none; transition: 0.2s; }
-        
         /* Sidebar */
         .sidebar {
-            width: var(--nav-width);
-            background: var(--bg-body);
-            border-right: 1px solid var(--bg-border);
-            padding: 24px;
+            width: 220px;
+            background: #000;
+            border-right: 2px solid #fff;
             display: flex;
             flex-direction: column;
+            padding: 40px 20px;
         }
 
-        .logo { font-size: 26px; font-weight: 800; letter-spacing: -1px; margin-bottom: 40px; }
-        .logo span { color: var(--primary); }
+        .logo { 
+            font-size: 32px; 
+            font-weight: 700; 
+            letter-spacing: -2px; 
+            margin-bottom: 60px;
+            text-transform: uppercase;
+        }
 
         .nav-item {
-            display: flex; align-items: center; gap: 12px;
-            padding: 12px; color: var(--text-dim);
-            font-size: 14px; font-weight: 600;
-            border-radius: 4px; cursor: pointer;
-            margin-bottom: 4px;
+            padding: 16px 0;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-bottom: 1px solid #222;
+            transition: all 0.2s;
         }
-        .nav-item:hover { background: var(--bg-panel); color: #fff; }
-        .nav-item.active { background: #1a1a1a; color: #fff; border-left: 3px solid var(--primary); }
+        .nav-item:hover { 
+            background: #fff; 
+            color: #000; 
+            padding-left: 10px;
+        }
+        .nav-item.active { 
+            background: #fff; 
+            color: #000; 
+            padding-left: 10px;
+        }
 
-        .upload-zone-btn {
+        .upload-btn {
             margin-top: auto;
-            background: var(--bg-panel);
-            border: 1px dashed var(--bg-border);
-            color: var(--text-dim);
-            padding: 15px;
+            background: #fff;
+            color: #000;
+            padding: 18px;
             text-align: center;
-            border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: 2px solid #fff;
+            transition: all 0.2s;
         }
-        .upload-zone-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .upload-btn:hover { 
+            background: #000; 
+            color: #fff; 
+        }
 
         /* Main Area */
-        .main { flex: 1; display: flex; flex-direction: column; position: relative; }
+        .main { flex: 1; display: flex; flex-direction: column; }
         
         /* Top Bar */
         .top-bar {
-            height: 70px;
-            border-bottom: 1px solid var(--bg-border);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 30px;
-            background: rgba(5,5,5,0.9);
-            backdrop-filter: blur(10px);
+            height: 80px;
+            border-bottom: 2px solid #fff;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            padding: 0 40px;
+            background: #000;
         }
 
         .search-box {
-            background: var(--bg-panel);
-            border: 1px solid var(--bg-border);
-            padding: 10px 16px;
-            border-radius: 4px;
-            width: 350px;
-            color: #fff;
-            display: flex; align-items: center; gap: 10px;
+            background: #000;
+            border: 2px solid #fff;
+            padding: 12px 20px;
+            width: 400px;
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
         }
-        .search-box input { background: transparent; border: none; color: white; width: 100%; outline: none; }
+        .search-box input { 
+            background: transparent; 
+            border: none; 
+            color: #fff; 
+            width: 100%; 
+            outline: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
 
-        .auth-widget { display: flex; align-items: center; gap: 20px; font-size: 13px; font-weight: 600; }
-        .credits-badge { color: var(--primary); background: rgba(79, 70, 229, 0.1); padding: 5px 12px; border-radius: 4px; }
+        .auth-widget { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            font-size: 12px; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .credits-badge { 
+            background: #fff; 
+            color: #000; 
+            padding: 8px 16px; 
+            border: 2px solid #fff;
+        }
+        .auth-btn {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 8px 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+        .auth-btn:hover {
+            background: #fff;
+            color: #000;
+        }
         
         /* Content Area */
-        .content-scroll { flex: 1; overflow-y: auto; padding: 30px; padding-bottom: 100px; }
+        .content-scroll { 
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 40px; 
+            padding-bottom: 120px; 
+        }
 
-        .section-header { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .section-title { font-size: 20px; font-weight: 700; }
+        .section-header { 
+            margin-bottom: 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #fff;
+        }
+        .section-title { 
+            font-size: 28px; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
 
         /* Sample Table */
+        .sample-header {
+            display: grid;
+            grid-template-columns: 60px 4fr 1fr 1fr 120px;
+            padding: 16px 0;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #fff;
+        }
+
         .sample-row {
             display: grid;
-            grid-template-columns: 40px 3fr 1fr 1fr 1fr;
-            padding: 12px;
-            border-bottom: 1px solid var(--bg-border);
+            grid-template-columns: 60px 4fr 1fr 1fr 120px;
+            padding: 20px 0;
             align-items: center;
-            font-size: 13px;
-            color: var(--text-dim);
-            transition: 0.1s;
+            font-size: 14px;
+            border-bottom: 1px solid #333;
+            transition: all 0.1s;
         }
-        .sample-row:hover { background: var(--bg-panel); color: #fff; }
-        .sample-row.playing { background: #111; border-left: 2px solid var(--primary); }
+        .sample-row:hover { 
+            background: #fff; 
+            color: #000;
+            padding-left: 20px;
+        }
+        .sample-row.playing { 
+            background: #fff; 
+            color: #000;
+            padding-left: 20px;
+        }
         
         .play-btn { 
-            width: 28px; height: 28px; background: #222; 
-            display: flex; align-items: center; justify-content: center; 
-            border-radius: 50%; color: #fff; cursor: pointer;
+            width: 36px; 
+            height: 36px; 
+            background: #000; 
+            border: 2px solid #fff;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #fff; 
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .play-btn:hover, .sample-row.playing .play-btn { background: var(--primary); }
+        .play-btn:hover { 
+            background: #fff; 
+            color: #000; 
+        }
+        .sample-row.playing .play-btn { 
+            background: #000; 
+            color: #fff; 
+        }
+        .sample-row:hover .play-btn {
+            border-color: #000;
+        }
 
-        .row-actions { display: flex; justify-content: flex-end; gap: 10px; }
-        .action-icon { padding: 6px; cursor: pointer; }
-        .action-icon:hover { color: var(--text-main); }
+        .sample-name { 
+            font-weight: 700; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-        /* Auth Modal */
+        .row-actions { 
+            display: flex; 
+            justify-content: flex-end; 
+            gap: 15px; 
+        }
+        .action-icon { 
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+        .action-icon:hover { 
+            transform: scale(1.2);
+        }
+
+        /* Modal */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex; align-items: center; justify-content: center;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
             z-index: 1000;
         }
         .modal {
-            background: #111;
-            border: 1px solid var(--bg-border);
-            padding: 40px;
-            width: 350px;
-            border-radius: 8px;
-            text-align: center;
+            background: #000;
+            border: 3px solid #fff;
+            padding: 60px 40px;
+            width: 450px;
+        }
+        .modal h2 {
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 30px;
         }
         .modal input {
-            width: 100%; padding: 12px; margin-bottom: 10px;
-            background: #000; border: 1px solid #333; color: white;
-            border-radius: 4px;
+            width: 100%; 
+            padding: 16px; 
+            margin-bottom: 15px;
+            background: #000; 
+            border: 2px solid #fff; 
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .modal input::placeholder {
+            color: #666;
         }
         .modal button {
-            width: 100%; padding: 12px; background: var(--primary);
-            color: white; font-weight: 700; border-radius: 4px;
+            width: 100%; 
+            padding: 18px; 
+            background: #fff;
+            color: #000; 
+            font-weight: 700; 
+            border: 2px solid #fff;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+        .modal button:hover {
+            background: #000;
+            color: #fff;
+        }
+        .modal-text {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .modal-close {
+            cursor: pointer;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        .modal-close:hover {
+            text-decoration: underline;
         }
 
-        /* Upload Modal */
-        #upload-modal .modal { width: 500px; text-align: left; }
+        /* Upload Modal Specific */
+        #upload-modal .modal { width: 550px; }
         .file-drop {
-            border: 2px dashed #333; padding: 40px; text-align: center;
-            margin: 20px 0; color: var(--text-dim); cursor: pointer;
+            border: 2px dashed #fff; 
+            padding: 60px 40px; 
+            text-align: center;
+            margin: 20px 0; 
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .file-drop:hover { border-color: var(--primary); }
+        .file-drop:hover { 
+            background: #fff;
+            color: #000;
+        }
+        .input-row {
+            display: flex;
+            gap: 15px;
+        }
 
         /* Bottom Player */
         .player {
-            position: fixed; bottom: 0; left: var(--nav-width); right: 0;
-            height: 80px; background: #0A0A0A; border-top: 1px solid var(--bg-border);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; z-index: 100;
+            position: fixed; 
+            bottom: 0; 
+            left: 220px; 
+            right: 0;
+            height: 90px; 
+            background: #000; 
+            border-top: 2px solid #fff;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            padding: 0 40px; 
+            z-index: 100;
         }
-        .waveform-dummy { flex: 1; height: 30px; margin: 0 40px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="30"><rect width="2" height="10" y="10" fill="%23333"/></svg>'); opacity: 0.5; }
+        .player-info {
+            width: 250px;
+        }
+        .player-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .player-meta {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .main-play-btn {
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .main-play-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+        .waveform {
+            flex: 1;
+            height: 40px;
+            margin: 0 40px;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .download-btn {
+            background: #fff;
+            color: #000;
+            padding: 12px 24px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .download-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* Utilities */
+        .hidden { display: none !important; }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #fff; border: 1px solid #000; }
     </style>
 </head>
 <body>
 
     <nav class="sidebar">
-        <div class="logo">Loopd<span>.</span></div>
+        <div class="logo">LOOPD</div>
         
         <div class="nav-item active" onclick="switchTab('browse')">
-            <i class="fa-solid fa-layer-group"></i> Browse
+            Browse
         </div>
         <div class="nav-item" onclick="switchTab('likes')">
-            <i class="fa-solid fa-heart"></i> Liked Sounds
+            Liked
         </div>
         <div class="nav-item" onclick="switchTab('downloads')">
-            <i class="fa-solid fa-arrow-down"></i> My Downloads
+            Downloads
         </div>
 
-        <div class="upload-zone-btn btn" onclick="openUploadModal()">
-            <i class="fa-solid fa-cloud-arrow-up"></i> Upload Sample
+        <div class="upload-btn" onclick="openUploadModal()">
+            + Upload
         </div>
     </nav>
 
@@ -191,107 +450,113 @@
         <div class="top-bar">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search samples, keys, bpm...">
+                <input type="text" placeholder="Search">
             </div>
             
             <div class="auth-widget" id="auth-ui">
-                <button class="btn" style="color:#fff" onclick="showAuthModal()">Log In / Sign Up</button>
+                <button class="auth-btn" onclick="showAuthModal()">Log In</button>
             </div>
         </div>
 
         <div class="content-scroll">
             <div class="section-header">
                 <h2 class="section-title" id="page-title">Browse Library</h2>
-                <div style="font-size: 12px; color: var(--text-dim);">Sort by: <span style="color:white">Newest</span></div>
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                    Sort: <span style="font-weight: 700;">Newest</span>
+                </div>
             </div>
 
-            <div class="sample-row" style="border-bottom: 1px solid #333; font-weight: 700; color: #fff;">
+            <div class="sample-header">
                 <div></div>
-                <div>Sample Name</div>
+                <div>Name</div>
                 <div>BPM</div>
                 <div>Key</div>
                 <div style="text-align: right">Actions</div>
             </div>
 
             <div id="sample-list">
-                <div style="padding:40px; text-align:center; color: #444;">Loading samples...</div>
+                <div style="padding:60px 0; text-align:center; color: #333; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">
+                    Loading samples...
+                </div>
             </div>
         </div>
     </main>
 
     <div class="player">
-        <div style="width: 200px;">
-            <h4 style="font-size: 14px; margin-bottom: 4px;" id="player-title">No Track Selected</h4>
-            <div style="font-size: 11px; color: var(--text-dim);" id="player-author">-</div>
+        <div class="player-info">
+            <div class="player-title" id="player-title">No Track</div>
+            <div class="player-meta" id="player-author">—</div>
         </div>
         
-        <button class="play-btn" style="width: 40px; height: 40px; font-size: 16px;" onclick="toggleMainPlay()">
+        <button class="main-play-btn" onclick="toggleMainPlay()">
             <i class="fa-solid fa-play" id="main-play-icon"></i>
         </button>
 
-        <div class="waveform-dummy"></div>
+        <div class="waveform">Waveform</div>
 
-        <button class="btn" style="background:var(--primary); color: white; padding: 8px 16px; font-size: 12px; border-radius: 4px;" onclick="downloadCurrent()">
-            Download (1 Credit)
+        <button class="download-btn" onclick="downloadCurrent()">
+            Download (1)
         </button>
 
         <audio id="global-audio"></audio>
     </div>
 
+    <!-- Auth Modal -->
     <div class="modal-overlay hidden" id="auth-modal">
         <div class="modal">
-            <h2 style="margin-bottom: 20px;">Loopd Account</h2>
-            <input type="email" id="email" placeholder="Email Address">
+            <h2>Account</h2>
+            <input type="email" id="email" placeholder="Email">
             <input type="password" id="password" placeholder="Password">
             <button onclick="handleAuth()">Sign In / Sign Up</button>
-            <p style="margin-top: 15px; font-size: 12px; color: #666;">
-                If account doesn't exist, we will create one + give 5 credits.
+            <p class="modal-text">
+                New users receive 5 free credits
             </p>
-            <p style="margin-top: 10px; font-size: 12px; color: #666; cursor: pointer" onclick="closeModals()">Close</p>
+            <p class="modal-close" onclick="closeModals()">Close</p>
         </div>
     </div>
 
+    <!-- Upload Modal -->
     <div class="modal-overlay hidden" id="upload-modal">
         <div class="modal">
-            <h2 style="margin-bottom: 20px;">Upload Sample</h2>
-            <input type="text" id="up-name" placeholder="Sample Name (e.g. Deep Kick 01)">
-            <div style="display: flex; gap: 10px;">
+            <h2>Upload Sample</h2>
+            <input type="text" id="up-name" placeholder="Sample Name">
+            <div class="input-row">
                 <input type="number" id="up-bpm" placeholder="BPM">
-                <input type="text" id="up-key" placeholder="Key (e.g. Cm)">
+                <input type="text" id="up-key" placeholder="Key">
             </div>
             
             <input type="file" id="up-file" class="hidden" accept=".wav,.mp3">
             <div class="file-drop" onclick="document.getElementById('up-file').click()">
-                <i class="fa-solid fa-file-audio" style="font-size: 30px; margin-bottom: 10px;"></i><br>
-                <span id="file-name-display">Click to select WAV file</span>
+                <i class="fa-solid fa-file-audio" style="font-size: 40px; margin-bottom: 15px;"></i><br>
+                <span id="file-name-display" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                    Click to select file
+                </span>
             </div>
 
-            <button onclick="uploadSample()">Upload to Database</button>
-            <p style="margin-top: 10px; font-size: 12px; color: #666; cursor: pointer; text-align: center;" onclick="closeModals()">Cancel</p>
+            <button onclick="uploadSample()">Upload</button>
+            <p class="modal-close" onclick="closeModals()">Cancel</p>
         </div>
     </div>
 
 
     <script type="module">
         // -----------------------------------------------------
-        // 1. CONFIGURATION (PASTE YOUR KEYS HERE)
+        // 1. CONFIGURATION
         // -----------------------------------------------------
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
-	// Your web app's Firebase configuration
-	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-	const firebaseConfig = {
-	  apiKey: "AIzaSyDHtQ80PZrnbx-7avGEei6-hkKASKKufFw",
- 	 authDomain: "loopd-app.firebaseapp.com",
- 	 projectId: "loopd-app",
- 	 storageBucket: "loopd-app.firebasestorage.app",
- 	 messagingSenderId: "380753853039",
-	  appId: "1:380753853039:web:f52d0618cb9a027d7f6b9a",
-	  measurementId: "G-9FCMND5KL2"
-	};
-        // REPLACE THIS WITH YOUR SUPABASE KEYS
+        const firebaseConfig = {
+          apiKey: "AIzaSyDHtQ80PZrnbx-7avGEei6-hkKASKKufFw",
+          authDomain: "loopd-app.firebaseapp.com",
+          projectId: "loopd-app",
+          storageBucket: "loopd-app.firebasestorage.app",
+          messagingSenderId: "380753853039",
+          appId: "1:380753853039:web:f52d0618cb9a027d7f6b9a",
+          measurementId: "G-9FCMND5KL2"
+        };
+
         const supabaseUrl = 'https://kzzjzmmdtoryruackdei.supabase.co'; 
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6emp6bW1kdG9yeXJ1YWNrZGVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3NTQ3OTksImV4cCI6MjA4NDMzMDc5OX0.mx7UAyVr0QuyiWVwOhNDeX81kjVLlL9PQNtq9_qGAkc'; 
 
@@ -321,14 +586,11 @@
             const pass = document.getElementById('password').value;
 
             try {
-                // Try logging in
                 await signInWithEmailAndPassword(auth, email, pass);
             } catch (error) {
-                // If user not found, try signing up
                 if(error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
                     try {
                         const userCred = await createUserWithEmailAndPassword(auth, email, pass);
-                        // Create User Doc with 5 Free Credits
                         await setDoc(doc(db, "users", userCred.user.uid), {
                             email: email,
                             credits: 5,
@@ -346,23 +608,21 @@
             closeModals();
         };
 
-        // Listen for Login State Changes
         onAuthStateChanged(auth, async (user) => {
             currentUser = user;
             const ui = document.getElementById('auth-ui');
             
             if (user) {
-                // Fetch Credits
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists()) {
                     userCredits = userDoc.data().credits;
                     ui.innerHTML = `
                         <div class="credits-badge">${userCredits} Credits</div>
-                        <div style="cursor:pointer" onclick="logout()">Sign Out</div>
+                        <div style="cursor:pointer; text-transform: uppercase; letter-spacing: 1px;" onclick="logout()">Sign Out</div>
                     `;
                 }
             } else {
-                ui.innerHTML = `<button class="btn" style="color:#fff" onclick="showAuthModal()">Log In / Sign Up</button>`;
+                ui.innerHTML = `<button class="auth-btn" onclick="showAuthModal()">Log In</button>`;
                 userCredits = 0;
             }
         });
@@ -377,7 +637,6 @@
             document.getElementById('upload-modal').classList.remove('hidden');
         };
 
-        // File Input UI Change
         document.getElementById('up-file').addEventListener('change', function() {
             if(this.files[0]) document.getElementById('file-name-display').innerText = this.files[0].name;
         });
@@ -390,16 +649,13 @@
 
             if(!file || !name) return alert("Please fill all fields");
 
-            // 1. Upload .wav to Supabase
             const fileName = `${Date.now()}_${file.name}`;
             const { data, error } = await supabase.storage.from('samples').upload(fileName, file);
 
             if(error) return alert("Upload failed: " + error.message);
 
-            // 2. Get Public URL
             const { data: { publicUrl } } = supabase.storage.from('samples').getPublicUrl(fileName);
 
-            // 3. Save Metadata to Firestore
             await addDoc(collection(db, "samples"), {
                 name: name,
                 bpm: bpm,
@@ -411,7 +667,7 @@
 
             alert("Sample Uploaded Successfully!");
             closeModals();
-            loadSamples(); // Refresh list
+            loadSamples();
         };
 
         // -----------------------------------------------------
@@ -419,19 +675,17 @@
         // -----------------------------------------------------
         async function loadSamples(filter = 'all') {
             const list = document.getElementById('sample-list');
-            list.innerHTML = '<div style="padding:20px; color:#666;">Refreshing library...</div>';
+            list.innerHTML = '<div style="padding:60px 0; text-align:center; color:#333; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">Refreshing...</div>';
 
             let q = query(collection(db, "samples"));
-            // In a real app, we would add complex filters here
             
             const snapshot = await getDocs(q);
             allSamples = [];
             snapshot.forEach(doc => allSamples.push({ id: doc.id, ...doc.data() }));
 
-            // Render
             list.innerHTML = '';
             if(allSamples.length === 0) {
-                list.innerHTML = '<div style="padding:20px;">No samples found. Upload one!</div>';
+                list.innerHTML = '<div style="padding:60px 0; text-align:center; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">No samples found</div>';
                 return;
             }
 
@@ -443,7 +697,7 @@
                     <div class="play-btn" onclick="playTrack('${s.id}')">
                         <i class="fa-solid fa-play" id="icon-${s.id}"></i>
                     </div>
-                    <div style="font-weight:600; color:white">${s.name}</div>
+                    <div class="sample-name">${s.name}</div>
                     <div>${s.bpm}</div>
                     <div>${s.key}</div>
                     <div class="row-actions">
@@ -459,7 +713,6 @@
             const sample = allSamples.find(s => s.id === id);
             if(!sample) return;
 
-            // Reset UI
             document.querySelectorAll('.sample-row').forEach(r => r.classList.remove('playing'));
             document.querySelectorAll('.fa-pause').forEach(i => i.classList.replace('fa-pause', 'fa-play'));
 
@@ -468,12 +721,10 @@
                 return;
             }
 
-            // Play New
             currentTrack = sample;
             audio.src = sample.url;
             audio.play();
 
-            // Update UI
             const row = document.querySelector(`.sample-row[data-id="${id}"]`);
             if(row) row.classList.add('playing');
             
@@ -483,9 +734,8 @@
                 icon.classList.add('fa-pause');
             }
 
-            // Update Bottom Player
             document.getElementById('player-title').innerText = sample.name;
-            document.getElementById('player-author').innerText = `${sample.bpm} BPM - ${sample.key}`;
+            document.getElementById('player-author').innerText = `${sample.bpm} BPM — ${sample.key}`;
             document.getElementById('main-play-icon').classList.replace('fa-play', 'fa-pause');
         };
 
@@ -503,7 +753,6 @@
         // 6. DOWNLOADING & CREDITS
         // -----------------------------------------------------
         window.downloadSample = async (id) => {
-            // Find sample if id passed, else current
             let sampleId = id || (currentTrack ? currentTrack.id : null);
             if (!sampleId) return;
             
@@ -512,21 +761,17 @@
 
             const sample = allSamples.find(s => s.id === sampleId);
 
-            // Deduct Credit in Firestore
             const userRef = doc(db, "users", currentUser.uid);
             await updateDoc(userRef, {
                 credits: userCredits - 1
             });
             
-            // Update local state
             userCredits--;
             document.querySelector('.credits-badge').innerText = `${userCredits} Credits`;
 
-            // Trigger Browser Download
-            // (Create a temporary link to force download)
             const a = document.createElement('a');
             a.href = sample.url;
-            a.target = '_blank'; // Opens in new tab to force browser download/play
+            a.target = '_blank';
             a.download = sample.name;
             document.body.appendChild(a);
             a.click();
@@ -545,7 +790,6 @@
             document.getElementById('page-title').innerText = tabName === 'browse' ? 'Browse Library' : 
                                                               tabName === 'likes' ? 'Liked Sounds' : 'My Downloads';
             
-            // In a real app, we would filter database queries here
             loadSamples(); 
         };
 
