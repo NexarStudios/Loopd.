@@ -38,6 +38,7 @@
             letter-spacing: -2px; 
             margin-bottom: 60px;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         .nav-item {
@@ -153,8 +154,58 @@
             padding-bottom: 120px; 
         }
 
+        /* HOME PAGE */
+        .home-hero {
+            text-align: center;
+            padding: 80px 0;
+            border-bottom: 2px solid #fff;
+            margin-bottom: 60px;
+        }
+        .home-hero h1 {
+            font-size: 72px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
+        .home-hero p {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: #fff;
+            border: 2px solid #fff;
+            margin-bottom: 60px;
+        }
+        .stat-card {
+            background: #000;
+            padding: 40px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+        }
+
+        .featured-collections {
+            margin-bottom: 60px;
+        }
+
         .section-header { 
-            margin-bottom: 40px; 
+            margin-bottom: 30px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
@@ -168,10 +219,61 @@
             letter-spacing: -1px;
         }
 
+        /* COLLECTIONS GRID */
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .collection-card {
+            border: 2px solid #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .collection-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 8px 8px 0 #fff;
+        }
+        .collection-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #333;
+            border-bottom: 2px solid #fff;
+            overflow: hidden;
+        }
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .collection-info {
+            padding: 20px;
+        }
+        .collection-name {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .collection-meta {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+        }
+
         /* Sample Table */
         .sample-header {
             display: grid;
-            grid-template-columns: 60px 4fr 1fr 1fr 120px;
+            grid-template-columns: 60px 4fr 1fr 1fr 1fr 120px;
             padding: 16px 0;
             font-weight: 700;
             font-size: 11px;
@@ -182,7 +284,7 @@
 
         .sample-row {
             display: grid;
-            grid-template-columns: 60px 4fr 1fr 1fr 120px;
+            grid-template-columns: 60px 4fr 1fr 1fr 1fr 120px;
             padding: 20px 0;
             align-items: center;
             font-size: 14px;
@@ -244,6 +346,25 @@
             transform: scale(1.2);
         }
 
+        .back-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #000;
+            color: #fff;
+            border: 2px solid #fff;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
         /* Modal */
         .modal-overlay {
             position: fixed; 
@@ -262,6 +383,8 @@
             border: 3px solid #fff;
             padding: 60px 40px;
             width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         .modal h2 {
             font-size: 24px;
@@ -270,7 +393,7 @@
             letter-spacing: -1px;
             margin-bottom: 30px;
         }
-        .modal input {
+        .modal input, .modal textarea, .modal select {
             width: 100%; 
             padding: 16px; 
             margin-bottom: 15px;
@@ -280,9 +403,15 @@
             font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
+            font-family: 'Space Grotesk', monospace;
         }
-        .modal input::placeholder {
+        .modal input::placeholder, .modal textarea::placeholder {
             color: #666;
+        }
+        .modal textarea {
+            resize: vertical;
+            min-height: 80px;
+            text-transform: none;
         }
         .modal button {
             width: 100%; 
@@ -295,6 +424,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.2s;
+            font-family: 'Space Grotesk', monospace;
         }
         .modal button:hover {
             background: #000;
@@ -321,7 +451,9 @@
         }
 
         /* Upload Modal Specific */
-        #upload-modal .modal { width: 550px; }
+        #upload-modal .modal { width: 600px; }
+        #collection-modal .modal { width: 550px; }
+        
         .file-drop {
             border: 2px dashed #fff; 
             padding: 60px 40px; 
@@ -334,9 +466,50 @@
             background: #fff;
             color: #000;
         }
+        .file-drop.small {
+            padding: 40px 20px;
+        }
         .input-row {
             display: flex;
             gap: 15px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 2px solid #fff;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .radio-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            cursor: pointer;
+        }
+        .radio-option label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .collection-select {
+            width: 100%;
+            padding: 16px;
+            background: #000;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
         }
 
         /* Bottom Player */
@@ -424,20 +597,89 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #fff; border: 1px solid #000; }
+
+        /* Empty State */
+        .empty-state {
+            padding: 80px 40px;
+            text-align: center;
+            color: #666;
+        }
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+        .empty-state h3 {
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .empty-state p {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Create Collection Button */
+        .create-collection-btn {
+            background: #fff;
+            color: #000;
+            padding: 12px 24px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .create-collection-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* Image Preview */
+        .image-preview {
+            margin: 15px 0;
+            border: 2px solid #fff;
+            aspect-ratio: 1;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+        }
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-preview.empty {
+            color: #333;
+            font-size: 48px;
+        }
     </style>
 </head>
 <body>
 
     <nav class="sidebar">
-        <div class="logo">LOOPD</div>
+        <div class="logo" onclick="switchView('home')">LOOPD</div>
         
-        <div class="nav-item active" onclick="switchTab('browse')">
-            Browse
+        <div class="nav-item active" onclick="switchView('home')">
+            Home
         </div>
-        <div class="nav-item" onclick="switchTab('likes')">
+        <div class="nav-item" onclick="switchView('collections')">
+            Collections
+        </div>
+        <div class="nav-item" onclick="switchView('browse')">
+            All Samples
+        </div>
+        <div class="nav-item" onclick="switchView('likes')">
             Liked
         </div>
-        <div class="nav-item" onclick="switchTab('downloads')">
+        <div class="nav-item" onclick="switchView('downloads')">
             Downloads
         </div>
 
@@ -450,7 +692,7 @@
         <div class="top-bar">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search">
+                <input type="text" id="search-input" placeholder="Search" oninput="handleSearch()">
             </div>
             
             <div class="auth-widget" id="auth-ui">
@@ -458,27 +700,8 @@
             </div>
         </div>
 
-        <div class="content-scroll">
-            <div class="section-header">
-                <h2 class="section-title" id="page-title">Browse Library</h2>
-                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
-                    Sort: <span style="font-weight: 700;">Newest</span>
-                </div>
-            </div>
-
-            <div class="sample-header">
-                <div></div>
-                <div>Name</div>
-                <div>BPM</div>
-                <div>Key</div>
-                <div style="text-align: right">Actions</div>
-            </div>
-
-            <div id="sample-list">
-                <div style="padding:60px 0; text-align:center; color: #333; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">
-                    Loading samples...
-                </div>
-            </div>
+        <div class="content-scroll" id="content-area">
+            <!-- Content will be dynamically loaded here -->
         </div>
     </main>
 
@@ -515,25 +738,70 @@
         </div>
     </div>
 
-    <!-- Upload Modal -->
+    <!-- Upload Sample Modal -->
     <div class="modal-overlay hidden" id="upload-modal">
         <div class="modal">
             <h2>Upload Sample</h2>
+            
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="upload-single" name="upload-type" value="single" checked onchange="toggleUploadType()">
+                    <label for="upload-single">Single Sample</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="upload-collection" name="upload-type" value="collection" onchange="toggleUploadType()">
+                    <label for="upload-collection">Add to Collection</label>
+                </div>
+            </div>
+
+            <div id="collection-selector" class="hidden">
+                <select id="collection-select" class="collection-select">
+                    <option value="">Select Collection</option>
+                </select>
+                <button onclick="showCreateCollection()" style="margin-bottom: 15px;">+ Create New Collection</button>
+            </div>
+
             <input type="text" id="up-name" placeholder="Sample Name">
             <div class="input-row">
                 <input type="number" id="up-bpm" placeholder="BPM">
-                <input type="text" id="up-key" placeholder="Key">
+                <input type="text" id="up-key" placeholder="Key (e.g. Cm)">
             </div>
+            <input type="text" id="up-tags" placeholder="Tags (comma separated)">
             
-            <input type="file" id="up-file" class="hidden" accept=".wav,.mp3">
+            <input type="file" id="up-file" class="hidden" accept=".wav,.mp3" multiple>
             <div class="file-drop" onclick="document.getElementById('up-file').click()">
                 <i class="fa-solid fa-file-audio" style="font-size: 40px; margin-bottom: 15px;"></i><br>
                 <span id="file-name-display" style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
-                    Click to select file
+                    Click to select files (multiple allowed)
                 </span>
             </div>
 
             <button onclick="uploadSample()">Upload</button>
+            <p class="modal-close" onclick="closeModals()">Cancel</p>
+        </div>
+    </div>
+
+    <!-- Create Collection Modal -->
+    <div class="modal-overlay hidden" id="collection-modal">
+        <div class="modal">
+            <h2>Create Collection</h2>
+            
+            <input type="text" id="col-name" placeholder="Collection Name">
+            <textarea id="col-description" placeholder="Description (optional)"></textarea>
+            
+            <input type="file" id="col-image" class="hidden" accept="image/*">
+            <div class="file-drop small" onclick="document.getElementById('col-image').click()">
+                <i class="fa-solid fa-image" style="font-size: 30px; margin-bottom: 10px;"></i><br>
+                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                    Upload Thumbnail (1:1 ratio)
+                </span>
+            </div>
+
+            <div id="col-image-preview" class="image-preview hidden empty">
+                <i class="fa-solid fa-image"></i>
+            </div>
+
+            <button onclick="createCollection()">Create Collection</button>
             <p class="modal-close" onclick="closeModals()">Cancel</p>
         </div>
     </div>
@@ -573,6 +841,9 @@
         let userCredits = 0;
         let currentTrack = null;
         let allSamples = [];
+        let allCollections = [];
+        let currentView = 'home';
+        let currentCollection = null;
         const audio = document.getElementById('global-audio');
 
         // -----------------------------------------------------
@@ -584,6 +855,11 @@
         window.handleAuth = async () => {
             const email = document.getElementById('email').value;
             const pass = document.getElementById('password').value;
+
+            if (!email || !pass) {
+                alert('Please enter email and password');
+                return;
+            }
 
             try {
                 await signInWithEmailAndPassword(auth, email, pass);
@@ -621,74 +897,272 @@
                         <div style="cursor:pointer; text-transform: uppercase; letter-spacing: 1px;" onclick="logout()">Sign Out</div>
                     `;
                 }
+                // Reload current view to show user-specific content
+                switchView(currentView);
             } else {
                 ui.innerHTML = `<button class="auth-btn" onclick="showAuthModal()">Log In</button>`;
                 userCredits = 0;
+                switchView('home');
             }
         });
 
         window.logout = () => signOut(auth);
 
         // -----------------------------------------------------
-        // 4. SUPABASE UPLOAD & FIRESTORE SAVE
+        // 4. VIEW MANAGEMENT
         // -----------------------------------------------------
-        window.openUploadModal = () => {
-            if(!currentUser) return alert("Please log in to upload.");
-            document.getElementById('upload-modal').classList.remove('hidden');
+        window.switchView = (view) => {
+            currentView = view;
+            
+            // Update active nav item
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            event?.currentTarget?.classList.add('active');
+
+            const content = document.getElementById('content-area');
+            
+            switch(view) {
+                case 'home':
+                    renderHomePage(content);
+                    break;
+                case 'collections':
+                    renderCollectionsPage(content);
+                    break;
+                case 'browse':
+                    renderBrowsePage(content);
+                    break;
+                case 'likes':
+                    renderLikesPage(content);
+                    break;
+                case 'downloads':
+                    renderDownloadsPage(content);
+                    break;
+            }
         };
 
-        document.getElementById('up-file').addEventListener('change', function() {
-            if(this.files[0]) document.getElementById('file-name-display').innerText = this.files[0].name;
-        });
-
-        window.uploadSample = async () => {
-            const file = document.getElementById('up-file').files[0];
-            const name = document.getElementById('up-name').value;
-            const bpm = document.getElementById('up-bpm').value;
-            const key = document.getElementById('up-key').value;
-
-            if(!file || !name) return alert("Please fill all fields");
-
-            const fileName = `${Date.now()}_${file.name}`;
-            const { data, error } = await supabase.storage.from('samples').upload(fileName, file);
-
-            if(error) return alert("Upload failed: " + error.message);
-
-            const { data: { publicUrl } } = supabase.storage.from('samples').getPublicUrl(fileName);
-
-            await addDoc(collection(db, "samples"), {
-                name: name,
-                bpm: bpm,
-                key: key,
-                url: publicUrl,
-                uploaderId: currentUser.uid,
-                createdAt: new Date()
+        async function renderHomePage(content) {
+            // Load stats
+            const samplesSnapshot = await getDocs(collection(db, "samples"));
+            const collectionsSnapshot = await getDocs(collection(db, "collections"));
+            
+            const totalSamples = samplesSnapshot.size;
+            const totalCollections = collectionsSnapshot.size;
+            
+            // Get featured collections
+            const featuredCollections = [];
+            collectionsSnapshot.forEach(doc => {
+                featuredCollections.push({ id: doc.id, ...doc.data() });
             });
 
-            alert("Sample Uploaded Successfully!");
-            closeModals();
-            loadSamples();
-        };
+            content.innerHTML = `
+                <div class="home-hero">
+                    <h1>LOOPD</h1>
+                    <p>Infinite Sound Library</p>
+                </div>
 
-        // -----------------------------------------------------
-        // 5. DISPLAY SAMPLES & PLAYBACK
-        // -----------------------------------------------------
-        async function loadSamples(filter = 'all') {
-            const list = document.getElementById('sample-list');
-            list.innerHTML = '<div style="padding:60px 0; text-align:center; color:#333; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">Refreshing...</div>';
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">${totalSamples}</div>
+                        <div class="stat-label">Total Samples</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${totalCollections}</div>
+                        <div class="stat-label">Collections</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${currentUser ? userCredits : 0}</div>
+                        <div class="stat-label">Your Credits</div>
+                    </div>
+                </div>
 
-            let q = query(collection(db, "samples"));
-            
+                <div class="featured-collections">
+                    <div class="section-header">
+                        <h2 class="section-title">Featured Collections</h2>
+                        <button class="create-collection-btn" onclick="showCreateCollection()">+ Create Collection</button>
+                    </div>
+                    <div class="collections-grid" id="featured-grid"></div>
+                </div>
+            `;
+
+            const grid = document.getElementById('featured-grid');
+            if (featuredCollections.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h3>No Collections Yet</h3>
+                        <p>Create your first collection to organize samples</p>
+                    </div>
+                `;
+            } else {
+                featuredCollections.slice(0, 6).forEach(col => {
+                    grid.innerHTML += `
+                        <div class="collection-card" onclick="viewCollection('${col.id}')">
+                            <div class="collection-image">
+                                ${col.imageUrl ? `<img src="${col.imageUrl}" alt="${col.name}">` : '<i class="fa-solid fa-music"></i>'}
+                            </div>
+                            <div class="collection-info">
+                                <div class="collection-name">${col.name}</div>
+                                <div class="collection-meta">${col.sampleCount || 0} Samples</div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        async function renderCollectionsPage(content) {
+            const snapshot = await getDocs(collection(db, "collections"));
+            allCollections = [];
+            snapshot.forEach(doc => {
+                allCollections.push({ id: doc.id, ...doc.data() });
+            });
+
+            content.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">All Collections</h2>
+                    <button class="create-collection-btn" onclick="showCreateCollection()">+ Create Collection</button>
+                </div>
+                <div class="collections-grid" id="collections-grid"></div>
+            `;
+
+            const grid = document.getElementById('collections-grid');
+            if (allCollections.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h3>No Collections Yet</h3>
+                        <p>Create your first collection to organize samples</p>
+                    </div>
+                `;
+            } else {
+                allCollections.forEach(col => {
+                    grid.innerHTML += `
+                        <div class="collection-card" onclick="viewCollection('${col.id}')">
+                            <div class="collection-image">
+                                ${col.imageUrl ? `<img src="${col.imageUrl}" alt="${col.name}">` : '<i class="fa-solid fa-music"></i>'}
+                            </div>
+                            <div class="collection-info">
+                                <div class="collection-name">${col.name}</div>
+                                <div class="collection-meta">${col.sampleCount || 0} Samples</div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        window.viewCollection = async (collectionId) => {
+            currentCollection = collectionId;
+            const colDoc = await getDoc(doc(db, "collections", collectionId));
+            const colData = colDoc.data();
+
+            // Get samples in this collection
+            const q = query(collection(db, "samples"), where("collectionId", "==", collectionId));
             const snapshot = await getDocs(q);
             allSamples = [];
             snapshot.forEach(doc => allSamples.push({ id: doc.id, ...doc.data() }));
 
-            list.innerHTML = '';
-            if(allSamples.length === 0) {
-                list.innerHTML = '<div style="padding:60px 0; text-align:center; text-transform: uppercase; letter-spacing: 2px; font-size: 11px;">No samples found</div>';
+            const content = document.getElementById('content-area');
+            content.innerHTML = `
+                <div class="back-btn" onclick="switchView('collections')">← Back to Collections</div>
+                
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">${colData.name}</h2>
+                        ${colData.description ? `<p style="margin-top: 10px; font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px;">${colData.description}</p>` : ''}
+                    </div>
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                        ${allSamples.length} Samples
+                    </div>
+                </div>
+
+                <div class="sample-header">
+                    <div></div>
+                    <div>Name</div>
+                    <div>BPM</div>
+                    <div>Key</div>
+                    <div>Tags</div>
+                    <div style="text-align: right">Actions</div>
+                </div>
+
+                <div id="sample-list"></div>
+            `;
+
+            renderSampleList();
+        };
+
+        async function renderBrowsePage(content) {
+            const q = query(collection(db, "samples"));
+            const snapshot = await getDocs(q);
+            allSamples = [];
+            snapshot.forEach(doc => allSamples.push({ id: doc.id, ...doc.data() }));
+
+            content.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">All Samples</h2>
+                    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">
+                        ${allSamples.length} Total
+                    </div>
+                </div>
+
+                <div class="sample-header">
+                    <div></div>
+                    <div>Name</div>
+                    <div>BPM</div>
+                    <div>Key</div>
+                    <div>Tags</div>
+                    <div style="text-align: right">Actions</div>
+                </div>
+
+                <div id="sample-list"></div>
+            `;
+
+            renderSampleList();
+        }
+
+        async function renderLikesPage(content) {
+            // In a real app, filter by liked samples
+            content.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">Liked Samples</h2>
+                </div>
+                <div class="empty-state">
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>No Liked Samples</h3>
+                    <p>Like samples to see them here</p>
+                </div>
+            `;
+        }
+
+        async function renderDownloadsPage(content) {
+            // In a real app, filter by downloaded samples
+            content.innerHTML = `
+                <div class="section-header">
+                    <h2 class="section-title">My Downloads</h2>
+                </div>
+                <div class="empty-state">
+                    <i class="fa-solid fa-download"></i>
+                    <h3>No Downloads Yet</h3>
+                    <p>Download samples to see them here</p>
+                </div>
+            `;
+        }
+
+        function renderSampleList() {
+            const list = document.getElementById('sample-list');
+            if (!list) return;
+
+            if (allSamples.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-music"></i>
+                        <h3>No Samples</h3>
+                        <p>Upload samples to get started</p>
+                    </div>
+                `;
                 return;
             }
 
+            list.innerHTML = '';
             allSamples.forEach(s => {
                 const div = document.createElement('div');
                 div.className = 'sample-row';
@@ -698,26 +1172,234 @@
                         <i class="fa-solid fa-play" id="icon-${s.id}"></i>
                     </div>
                     <div class="sample-name">${s.name}</div>
-                    <div>${s.bpm}</div>
-                    <div>${s.key}</div>
+                    <div>${s.bpm || '—'}</div>
+                    <div>${s.key || '—'}</div>
+                    <div style="font-size: 11px; color: #666;">${s.tags || '—'}</div>
                     <div class="row-actions">
                         <i class="fa-regular fa-heart action-icon"></i>
-                        <i class="fa-solid fa-download action-icon" onclick="downloadSample('${s.id}')"></i>
+                        <i class="fa-solid fa-download action-icon" onclick="event.stopPropagation(); downloadSample('${s.id}')"></i>
                     </div>
                 `;
                 list.appendChild(div);
             });
         }
 
+        // -----------------------------------------------------
+        // 5. COLLECTION MANAGEMENT
+        // -----------------------------------------------------
+        window.showCreateCollection = () => {
+            if (!currentUser) {
+                alert('Please log in to create collections');
+                return;
+            }
+            document.getElementById('collection-modal').classList.remove('hidden');
+        };
+
+        // Image preview for collection
+        document.getElementById('col-image').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const preview = document.getElementById('col-image-preview');
+                    preview.classList.remove('hidden', 'empty');
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        window.createCollection = async () => {
+            const name = document.getElementById('col-name').value;
+            const description = document.getElementById('col-description').value;
+            const imageFile = document.getElementById('col-image').files[0];
+
+            if (!name) {
+                alert('Please enter a collection name');
+                return;
+            }
+
+            let imageUrl = null;
+
+            // Upload image to Supabase if provided
+            if (imageFile) {
+                const fileName = `collection_${Date.now()}_${imageFile.name}`;
+                const { data, error } = await supabase.storage
+                    .from('samples')
+                    .upload(fileName, imageFile);
+
+                if (error) {
+                    alert('Image upload failed: ' + error.message);
+                    return;
+                }
+
+                const { data: { publicUrl } } = supabase.storage
+                    .from('samples')
+                    .getPublicUrl(fileName);
+                imageUrl = publicUrl;
+            }
+
+            // Save to Firestore
+            await addDoc(collection(db, "collections"), {
+                name: name,
+                description: description,
+                imageUrl: imageUrl,
+                createdBy: currentUser.uid,
+                createdAt: new Date(),
+                sampleCount: 0
+            });
+
+            alert('Collection created!');
+            closeModals();
+            
+            // Reset form
+            document.getElementById('col-name').value = '';
+            document.getElementById('col-description').value = '';
+            document.getElementById('col-image').value = '';
+            document.getElementById('col-image-preview').classList.add('hidden', 'empty');
+            document.getElementById('col-image-preview').innerHTML = '<i class="fa-solid fa-image"></i>';
+            
+            // Reload collections
+            await loadCollectionsForSelect();
+            switchView('collections');
+        };
+
+        // -----------------------------------------------------
+        // 6. UPLOAD MANAGEMENT
+        // -----------------------------------------------------
+        window.openUploadModal = () => {
+            if (!currentUser) {
+                alert('Please log in to upload');
+                return;
+            }
+            loadCollectionsForSelect();
+            document.getElementById('upload-modal').classList.remove('hidden');
+        };
+
+        window.toggleUploadType = () => {
+            const isSingle = document.getElementById('upload-single').checked;
+            const selector = document.getElementById('collection-selector');
+            
+            if (isSingle) {
+                selector.classList.add('hidden');
+            } else {
+                selector.classList.remove('hidden');
+            }
+        };
+
+        async function loadCollectionsForSelect() {
+            const select = document.getElementById('collection-select');
+            const snapshot = await getDocs(collection(db, "collections"));
+            
+            select.innerHTML = '<option value="">Select Collection</option>';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                select.innerHTML += `<option value="${doc.id}">${data.name}</option>`;
+            });
+        }
+
+        document.getElementById('up-file').addEventListener('change', function() {
+            const count = this.files.length;
+            const display = document.getElementById('file-name-display');
+            if (count > 0) {
+                display.innerText = count === 1 ? this.files[0].name : `${count} files selected`;
+            }
+        });
+
+        window.uploadSample = async () => {
+            const files = document.getElementById('up-file').files;
+            const name = document.getElementById('up-name').value;
+            const bpm = document.getElementById('up-bpm').value;
+            const key = document.getElementById('up-key').value;
+            const tags = document.getElementById('up-tags').value;
+            const isCollection = document.getElementById('upload-collection').checked;
+            const collectionId = isCollection ? document.getElementById('collection-select').value : null;
+
+            if (files.length === 0) {
+                alert('Please select at least one file');
+                return;
+            }
+
+            if (isCollection && !collectionId) {
+                alert('Please select a collection');
+                return;
+            }
+
+            // Upload each file
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const fileName = `${Date.now()}_${file.name}`;
+                
+                // Upload to Supabase
+                const { data, error } = await supabase.storage
+                    .from('samples')
+                    .upload(fileName, file);
+
+                if (error) {
+                    alert(`Upload failed for ${file.name}: ${error.message}`);
+                    continue;
+                }
+
+                const { data: { publicUrl } } = supabase.storage
+                    .from('samples')
+                    .getPublicUrl(fileName);
+
+                // Save metadata to Firestore
+                const sampleData = {
+                    name: name || file.name.replace(/\.[^/.]+$/, ""),
+                    bpm: bpm || null,
+                    key: key || null,
+                    tags: tags || null,
+                    url: publicUrl,
+                    uploaderId: currentUser.uid,
+                    createdAt: new Date()
+                };
+
+                if (collectionId) {
+                    sampleData.collectionId = collectionId;
+                }
+
+                await addDoc(collection(db, "samples"), sampleData);
+
+                // Update collection sample count
+                if (collectionId) {
+                    const colRef = doc(db, "collections", collectionId);
+                    const colDoc = await getDoc(colRef);
+                    const currentCount = colDoc.data().sampleCount || 0;
+                    await updateDoc(colRef, {
+                        sampleCount: currentCount + 1
+                    });
+                }
+            }
+
+            alert(`${files.length} sample(s) uploaded successfully!`);
+            closeModals();
+            
+            // Reset form
+            document.getElementById('up-name').value = '';
+            document.getElementById('up-bpm').value = '';
+            document.getElementById('up-key').value = '';
+            document.getElementById('up-tags').value = '';
+            document.getElementById('up-file').value = '';
+            document.getElementById('file-name-display').innerText = 'Click to select files (multiple allowed)';
+            
+            // Reload current view
+            switchView(currentView);
+        };
+
+        // -----------------------------------------------------
+        // 7. PLAYBACK
+        // -----------------------------------------------------
         window.playTrack = (id) => {
             const sample = allSamples.find(s => s.id === id);
-            if(!sample) return;
+            if (!sample) return;
 
             document.querySelectorAll('.sample-row').forEach(r => r.classList.remove('playing'));
             document.querySelectorAll('.fa-pause').forEach(i => i.classList.replace('fa-pause', 'fa-play'));
 
-            if(currentTrack && currentTrack.id === id && !audio.paused) {
+            if (currentTrack && currentTrack.id === id && !audio.paused) {
                 audio.pause();
+                document.getElementById('main-play-icon').classList.replace('fa-pause', 'fa-play');
                 return;
             }
 
@@ -726,16 +1408,16 @@
             audio.play();
 
             const row = document.querySelector(`.sample-row[data-id="${id}"]`);
-            if(row) row.classList.add('playing');
+            if (row) row.classList.add('playing');
             
             const icon = document.getElementById(`icon-${id}`);
-            if(icon) {
+            if (icon) {
                 icon.classList.remove('fa-play');
                 icon.classList.add('fa-pause');
             }
 
             document.getElementById('player-title').innerText = sample.name;
-            document.getElementById('player-author').innerText = `${sample.bpm} BPM — ${sample.key}`;
+            document.getElementById('player-author').innerText = `${sample.bpm || '—'} BPM — ${sample.key || '—'}`;
             document.getElementById('main-play-icon').classList.replace('fa-play', 'fa-pause');
         };
 
@@ -750,14 +1432,20 @@
         };
 
         // -----------------------------------------------------
-        // 6. DOWNLOADING & CREDITS
+        // 8. DOWNLOAD
         // -----------------------------------------------------
         window.downloadSample = async (id) => {
             let sampleId = id || (currentTrack ? currentTrack.id : null);
             if (!sampleId) return;
             
-            if(!currentUser) return alert("Log in to download.");
-            if(userCredits < 1) return alert("Not enough credits!");
+            if (!currentUser) {
+                alert('Log in to download');
+                return;
+            }
+            if (userCredits < 1) {
+                alert('Not enough credits!');
+                return;
+            }
 
             const sample = allSamples.find(s => s.id === sampleId);
 
@@ -776,25 +1464,65 @@
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-        }
+        };
 
         window.downloadCurrent = () => window.downloadSample(null);
 
         // -----------------------------------------------------
-        // 7. TABS LOGIC
+        // 9. SEARCH
         // -----------------------------------------------------
-        window.switchTab = (tabName) => {
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+        window.handleSearch = () => {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
             
-            document.getElementById('page-title').innerText = tabName === 'browse' ? 'Browse Library' : 
-                                                              tabName === 'likes' ? 'Liked Sounds' : 'My Downloads';
-            
-            loadSamples(); 
+            if (searchTerm.length < 2) {
+                renderSampleList();
+                return;
+            }
+
+            const filtered = allSamples.filter(s => 
+                s.name.toLowerCase().includes(searchTerm) ||
+                (s.tags && s.tags.toLowerCase().includes(searchTerm)) ||
+                (s.key && s.key.toLowerCase().includes(searchTerm))
+            );
+
+            const list = document.getElementById('sample-list');
+            if (!list) return;
+
+            if (filtered.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <h3>No Results</h3>
+                        <p>Try different keywords</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = '';
+            filtered.forEach(s => {
+                const div = document.createElement('div');
+                div.className = 'sample-row';
+                div.setAttribute('data-id', s.id);
+                div.innerHTML = `
+                    <div class="play-btn" onclick="playTrack('${s.id}')">
+                        <i class="fa-solid fa-play" id="icon-${s.id}"></i>
+                    </div>
+                    <div class="sample-name">${s.name}</div>
+                    <div>${s.bpm || '—'}</div>
+                    <div>${s.key || '—'}</div>
+                    <div style="font-size: 11px; color: #666;">${s.tags || '—'}</div>
+                    <div class="row-actions">
+                        <i class="fa-regular fa-heart action-icon"></i>
+                        <i class="fa-solid fa-download action-icon" onclick="event.stopPropagation(); downloadSample('${s.id}')"></i>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
         };
 
-        // Initial Load
-        loadSamples();
+        // Initial load
+        switchView('home');
 
     </script>
 </body>
